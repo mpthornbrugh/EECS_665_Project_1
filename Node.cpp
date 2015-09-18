@@ -1,19 +1,3 @@
-//
-
-//  Node.cpp
-
-//  Lab_4_EECS_560
-
-//
-
-//  Created by Michael Thornbrugh on 2/26/15.
-
-//  Copyright (c) 2015 Michael Thornbrugh. All rights reserved.
-
-//
-
-
-
 #include "Node.h"
 
 
@@ -26,9 +10,7 @@ Node<T>::Node()
 
 {
 
-    m_left = NULL;
-
-    m_right = NULL;
+    m_next = NULL;
 
     m_parent = NULL;
 
@@ -50,29 +32,15 @@ T Node<T>::getValue()
 
 
 
-//Getter for m_left
+//Getter for m_next
 
 template <typename T>
 
-Node<T>* Node<T>::getLeft()
+Node<T>* Node<T>::getNext()
 
 {
 
-    return m_left;
-
-}
-
-
-
-//Getter for m_right
-
-template <typename T>
-
-Node<T>* Node<T>::getRight()
-
-{
-
-    return m_right;
+    return m_next;
 
 }
 
@@ -106,29 +74,15 @@ void Node<T>::setValue(T value)
 
 
 
-//Setter for m_left
+//Setter for m_next
 
 template <typename T>
 
-void Node<T>::setLeft(Node<T>* left)
+void Node<T>::setNext(Node<T>* next)
 
 {
 
-    m_left = left;
-
-}
-
-
-
-//Setter for m_right
-
-template <typename T>
-
-void Node<T>::setRight(Node<T>* right)
-
-{
-
-    m_right = right;
+    m_next = next;
 
 }
 

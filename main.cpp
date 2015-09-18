@@ -9,6 +9,8 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include "Node.cpp"
+#include "Node.h"
 
 std::string removeBraces(std::string s) {
 	s.erase(0, 1);
@@ -51,6 +53,10 @@ int main(int argc, const char * argv[])
     std::cout << "Start State: " << initialState << std::endl;
     std::cout << "Final State: " << finalState << std::endl;
     std::cout << "Number of States: " << numStates << std::endl;
+
+    Node<std::string> statesRoot;
+
+    
 
     return 0;
 }

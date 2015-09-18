@@ -48,9 +48,7 @@ class Node
 
 private:
 
-    Node<T>* m_left;
-
-    Node<T>* m_right;
+    Node<T>* m_next;
 
     Node<T>* m_parent;
 
@@ -96,21 +94,7 @@ public:
 
      */
 
-    Node<T>* getLeft();
-
-    
-
-    /**
-
-     *  @pre    m_right has been initialized
-
-     *  @post   None
-
-     *  @return m_right has been returned
-
-     */
-
-    Node<T>* getRight();
+    Node<T>* getNext();
 
     
 
@@ -142,21 +126,7 @@ public:
 
      */
 
-    void setLeft(Node<T>* left);
-
-    
-
-    /**
-
-     *  @pre    None
-
-     *  @post   m_right has been set to right
-
-     *  @return None
-
-     */
-
-    void setRight(Node<T>* right);
+    void setNext(Node<T>* next);
 
     
 
