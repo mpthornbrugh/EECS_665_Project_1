@@ -1,35 +1,3 @@
-//
-
-//  Node.h
-
-//  Lab_4_EECS_560
-
-//
-
-//  Created by Michael Thornbrugh on 2/26/15.
-
-//  Copyright (c) 2015 Michael Thornbrugh. All rights reserved.
-
-//
-
-
-
-//
-
-//  Node.h
-
-//  Lab5
-
-//
-
-//  Created by Michael Thornbrugh on 3/7/14.
-
-//  Copyright (c) 2014 Michael Thornbrugh. All rights reserved.
-
-//
-
-
-
 #ifndef __Lab5__Node__
 
 #define __Lab5__Node__

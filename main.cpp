@@ -12,10 +12,37 @@
 #include "Node.cpp"
 #include "Node.h"
 
+void printStates(Node<std::string>* root) {
+	while (root->getNext() != NULL) {
+		std::cout << root->getValue() << " | ";
+		root = root->getNext();
+	}
+	std::cout << root->getValue();
+}
+
 std::string removeBraces(std::string s) {
 	s.erase(0, 1);
 	s.erase(s.size() - 1);
 	return s;
+}
+
+void addState(Node<std::string>* root, std::string state) {
+	std::cout << "Adding " << state << std::endl;
+	if (root->getValue().compare("Not Initialized") == 0) {
+		root->setValue(state);
+		return;
+	}
+
+	Node<std::string>* current = root;
+	
+	while (current->getNext() != NULL) {
+		current = current->getNext();
+	}
+
+	Node<std::string>* newNode;
+	newNode->setValue(state);
+
+	current->setNext(newNode);
 }
 
 int main(int argc, const char * argv[])
@@ -54,9 +81,22 @@ int main(int argc, const char * argv[])
     std::cout << "Final State: " << finalState << std::endl;
     std::cout << "Number of States: " << numStates << std::endl;
 
-    Node<std::string> statesRoot;
+    Node<std::string>* statesRoot;
+std::cout << "Hey" << std::endl;
+    statesRoot->setValue("Not Initialized");
+std::cout << "Hey" << std::endl;
+    std::cin >> x;//Removing 'State'
 
-    
+    while (1) {
+    	std::cin >> x;
+    	if (atoi(x.c_str()) == initialState) {
+    		break;
+    	}
+    	addState(statesRoot, x);
+    }
+
+    printStates(statesRoot);
+    //Currently x has the number of the initialState
 
     return 0;
 }
