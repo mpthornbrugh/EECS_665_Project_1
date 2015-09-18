@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 
 std::string removeBraces(std::string s) {
 	s.erase(0, 1);
