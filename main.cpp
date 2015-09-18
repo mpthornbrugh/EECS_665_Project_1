@@ -27,7 +27,7 @@ int main(int argc, const char * argv[])
 
     x = removeBraces(x);
 
-    int initialState = std::atoi(x.c_str());
+    int initialState = atoi(x.c_str());
 
     for (int i = 0; i < 2; i++) {//Removing 'Final State'
     	std::cin >> x;
@@ -37,7 +37,7 @@ int main(int argc, const char * argv[])
 
     x = removeBraces(x);
 
-    int finalState = std::atoi(x.c_str());
+    int finalState = atoi(x.c_str());
 
     for (int i = 0; i < 2; i++) {//Removing 'Total States'
     	std::cin >> x;
@@ -45,7 +45,7 @@ int main(int argc, const char * argv[])
 
     std::cin >> x;
 
-    int numStates = std::atoi(x.c_str());
+    int numStates = atoi(x.c_str());
 
     std::cout << "Start State: " << initialState << std::endl;
     std::cout << "Final State: " << finalState << std::endl;
