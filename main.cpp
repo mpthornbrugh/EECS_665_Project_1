@@ -361,12 +361,13 @@ int main(int argc, const char * argv[])
 
         std::cout << "Mark " << numEndingStates << std::endl;
 
+        numEndingStates++;
+
         for (int i = 0; i < stateCount-1; i++) {
             //std::cout << "move(" << currentState << ", " << statesArray[i] << ")" << std::endl;
             std::string moveState = move(currentState, nfaArray, statesArray[i] , i, numStates);
 
             if (moveState.compare("") != 0) {
-                numEndingStates++;
                 std::cout << "{" << currentState << "} --" << statesArray[i] << "--> {" << moveState << "}" << std::endl;
 
                 // Get new E Closure of the moveState
@@ -380,6 +381,8 @@ int main(int argc, const char * argv[])
                 }
             }
         }
+
+        std::cout << std::endl;
     }
 
     return 0;
