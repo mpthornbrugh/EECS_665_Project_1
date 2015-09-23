@@ -68,7 +68,7 @@ std::string findEClosure(Node** statesArray, int state, int numStates) {
 
     for (int i = 0; i < numStates; i++) {
         if (visitedArr[i]) {
-            closure += std::to_string(i+1);
+            closure += std::string::to_string(i+1);
             closure += ",";
         }
     }
