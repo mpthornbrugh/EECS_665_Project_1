@@ -17,6 +17,21 @@
 #include "Node.cpp"
 #include "Node.h"
 
+bool inList(std::string newState, Node* root) {
+    while (root->getNext() != NULL) {
+        if (root->getValue().compare(newState) == 0) {
+            return true;
+        }
+        else {
+            root = root->getNext();
+        }
+    }
+    if (root->getValue().compare(newState) == 0) {
+        return true;
+    }
+    return false;
+}
+
 // This function is used to calculate the move of a state along a specific term.
 // The moveAlong is the term i.e. a,b,c,....
 // The moveNumber is the number in the list the term is i.e b would be 2 in the example just above.
@@ -332,7 +347,7 @@ int main(int argc, const char * argv[])
     std::string initialEClosure = findEClosure(nfaArray, ss.str(), numStates);
     numEndingStates++;
 
-    std::cout << "E-Closure(I0) = {" << initialEClosure << "} = " << numEndingStates << std::endl << std::endl;
+    std::cout << "E-closure(I0) = {" << initialEClosure << "} = " << numEndingStates << std::endl << std::endl;
 
     std::stack<std::string> EClosureStack;
     EClosureStack.push(initialEClosure);
@@ -352,7 +367,18 @@ int main(int argc, const char * argv[])
             std::cout << moveState << std::endl;
 
             if (moveState.compare("") != 0) {
-                std::cout << "{" << currentState << "} --" << statesArray[i] << "--> {" << moveState << "}" << std::endl; 
+                numEndingStates++
+                std::cout << "{" << currentState << "} --" << statesArray[i] << "--> {" << moveState << "}" << std::endl;
+
+                // Get new E Closure of the moveState
+                std::string moveEClosure = findEClosure(nfaArray, moveState, numStates);
+                std::cout << "E-closure{" << moveState << "} = {" << moveEClosure << "} = " << numEndingStates
+
+                // Add E Closure to dStates
+                if (!inList(moveEClosure, dStates)) {
+                    EClosureStack.push(moveEClosure);
+                    addState(dStates, moveEClosure);
+                }
             }
         }
     }
