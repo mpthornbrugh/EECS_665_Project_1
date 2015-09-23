@@ -17,6 +17,80 @@
 #include "Node.cpp"
 #include "Node.h"
 
+// This function is used to calculate the move of a state along a specific term.
+// The moveAlong is the term i.e. a,b,c,....
+// The moveNumber is the number in the list the term is i.e b would be 2 in the example just above.
+std::string move(std::string currentState, Node** statesArray, std::string moveAlong, int moveNumber, int numStates) {
+    //Initialization
+    bool visitedArr[numStates];
+    for (int i = 0; i < numStates; i++) {
+        visitedArr[i] = false;
+    }
+    std::string moveVal = "";
+
+    // A stack used to track next nodes
+    std::stack<Node*> stack;
+
+    std::string possibleMoves = currentState;
+
+    // Add the current states to the stack
+    if (possibleMoves.compare("") != 0) {
+        // Loop over all states
+        while (possibleMoves.compare("") != 0) {
+            // Get the first state to move to
+            std::string substring = possibleMoves.substr(0, 1);
+            possibleMoves = possibleMoves.erase(0, 1);
+            // Since we only get once character it will grab the ','
+            if (substring.compare(",") != 0) {
+                // Push this state onto the stack
+                int newNum = atoi(substring.c_str());
+                stack.push(statesArray[newNum - 1]);
+            }
+        }
+    }  
+
+    while (!stack.empty()) {
+        // Get the next item off the stack
+        Node* currentNode = stack.top();
+        stack.pop();
+
+        // Loop through the state to get to the need moving states
+        for (int i = 0; i < moveNumber; i++) {
+            currentNode = currentNode->getNext();
+        }
+
+        possibleMoves = currentNode->getValue();
+
+        // Check that the current state has anywhere to go on the given moveAlong
+        if (possibleMoves.compare("") != 0) {
+            // Loop over all states
+            while (possibleMoves.compare("") != 0) {
+                // Get the first state to move to
+                std::string substring = possibleMoves.substr(0, 1);
+                possibleMoves = possibleMoves.erase(0, 1);
+                // Since we only get once character it will grab the ','
+                if (substring.compare(",") != 0) {
+                    // Push this state onto the stack
+                    int newNum = atoi(substring.c_str());
+                    stack.push(statesArray[newNum - 1]);
+                    visitedArr[newNum - 1] = true;
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < numStates; i++) {
+        if (visitedArr[i]) {
+            std::stringstream ss;
+            ss << (i+1);
+            moveVal += ss.str();
+            moveVal += ",";
+        }
+    }
+    moveVal = moveVal.substr(0, moveVal.size() - 1);
+    return moveVal;
+}
+
 // This function is used to find the E Closure of a state
 std::string findEClosure(Node** statesArray, int state, int numStates) {
     // Initialization
@@ -242,7 +316,25 @@ int main(int argc, const char * argv[])
     std::string initialEClosure = findEClosure(nfaArray, initialState, numStates);
     numEndingStates++;
 
-    std::cout << "E-Closure(I0) = {" << initialEClosure << "} = " << numEndingStates << std::endl;
+    std::cout << "E-Closure(I0) = {" << initialEClosure << "} = " << numEndingStates << std::endl << std::endl;
+
+    std::stack<std::string> EClosureStack;
+    EClosureStack.push(initialEClosure);
+
+    Node* dStates = new Node();
+    dStates->setValue(initialEClosure);
+
+    while (!EClosureStack.empty()) {
+        std::string currentState = EClosureStack.top();
+        EClosureStack.pop();
+
+        std::cout << "Mark " << numEndingStates << std::endl;
+
+        for (int i = 0; i < stateCount; i++) {
+            std::string moveState = move(currentState, nfaArray, statesArray[i] , i+1, numStates);
+            std::cout << moveState << std::endl;
+        }
+    }
 
     return 0;
 }
