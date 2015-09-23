@@ -58,7 +58,7 @@ std::string findEClosure(Node** statesArray, int state, int numStates) {
                 // Since we only get once character it will grab the ','
                 if (substring.compare(",") != 0) {
                     // Push this state onto the stack
-                    int newNum = atoi(substring);
+                    int newNum = atoi(substring.c_str());
                     stack.push(statesArray[newNum - 1]);
                     numStack.push(newNum);
                 }
@@ -68,7 +68,7 @@ std::string findEClosure(Node** statesArray, int state, int numStates) {
 
     for (int i = 0; i < numStates; i++) {
         if (visitedArr[i]) {
-            closure += (i+1);
+            closure += itoa(i+1);
             closure += ",";
         }
     }
