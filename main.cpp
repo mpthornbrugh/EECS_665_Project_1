@@ -21,6 +21,16 @@ void printStates(Node* root) {
     std::cout << std::endl;
 }
 
+void fillStateArray(Node* root, std::string arr&) {
+    int count = 0;
+    while (root->getNext() != NULL) {
+        arr[count] = root->getValue();
+        root = root->getNext();
+        count++;
+    }
+    arr[count] = root->getValue();
+}
+
 int getNumStates(Node* root) {
     int count = 0;
     while (root->getNext() != NULL) {
@@ -104,8 +114,14 @@ int main(int argc, const char * argv[])
     	addState(statesRoot, x);
     }
 
-    printStates(statesRoot);
-    std::cout << getNumStates(statesRoot) << std::endl;
+    std::string statesArray[getNumStates(statesRoot)];
+
+    for (int i = 0; i < getNumStates(statesRoot); i++) {
+        std::cout << statesArray[i] << std::endl;
+    }
+
+    // printStates(statesRoot);
+    // std::cout << getNumStates(statesRoot) << std::endl;
     //Currently x has the number of the initialState
 
     return 0;
