@@ -131,6 +131,7 @@ std::cout << "#####################" << std::endl;
             }
             std::cout << x << std::endl;
         }
+        std::cin >> x; //Removes the State Number
     }
 
     //Currently x has the number of the initialState
