@@ -122,7 +122,7 @@ std::cout << "#####################" << std::endl;
     for (int i = 0; i < numStates; i++) {
         for (int j = 0; j < stateCount; j++) {
             std::cin >> x;
-            removeBraces(x);
+            x = removeBraces(x);
             if (x.compare("") == 0) {
                 nfaArray[i][j] = "";
             }
