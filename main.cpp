@@ -367,7 +367,7 @@ int main(int argc, const char * argv[])
             std::cout << moveState << std::endl;
 
             if (moveState.compare("") != 0) {
-                numEndingStates++
+                numEndingStates++;
                 std::cout << "{" << currentState << "} --" << statesArray[i] << "--> {" << moveState << "}" << std::endl;
 
                 // Get new E Closure of the moveState
