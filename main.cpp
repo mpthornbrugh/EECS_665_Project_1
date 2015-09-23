@@ -195,6 +195,7 @@ int main(int argc, const char * argv[])
     Node* temp = statesRoot;
     int tempCount = 0;
 
+    // This is used to convert the linked list version of the states into an array version making the states easier to access
     while (temp->getNext() != NULL) {
         statesArray[tempCount] = temp->getValue();
         tempCount++;
@@ -202,14 +203,11 @@ int main(int argc, const char * argv[])
     }
     statesArray[tempCount] = temp->getValue();
 
-    for (int i = 0; i < stateCount; i++) {
-        std::cout << statesArray[i] << std::endl;
-    }
-
     Node* nfaArray[numStates];
 
     Node* cur;
 
+    // This is the logic to read in the remainder of the file and create the tree of states
     for (int i = 0; i < numStates; i++) {
         nfaArray[i] = new Node();
         cur = nfaArray[i];
@@ -239,9 +237,12 @@ int main(int argc, const char * argv[])
         std::cin >> x; //Removes the State Number
     }
 
-    std::string initialEClosure = findEClosure(nfaArray, initialState, numStates);
+    int numEndingStates = 0;
 
-    std::cout << initialEClosure << std::endl;
+    std::string initialEClosure = findEClosure(nfaArray, initialState, numStates);
+    numEndingStates++;
+
+    std::cout << "E-Closure(I0) = {" << initialEClosure << "} = " << numEndingStates << std::endl;
 
     return 0;
 }
