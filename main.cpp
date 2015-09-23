@@ -350,6 +350,10 @@ int main(int argc, const char * argv[])
             std::cout << "move(" << currentState << ", " << statesArray[i] << ")" << std::endl;
             std::string moveState = move(currentState, nfaArray, statesArray[i] , i, numStates);
             std::cout << moveState << std::endl;
+
+            if (moveState.compare("") != 0) {
+                std::cout << "{" << currentState << "} --" << statesArray[i] << "--> {" << moveState << "}" << std::endl; 
+            }
         }
     }
 
