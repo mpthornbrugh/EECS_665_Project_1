@@ -38,7 +38,6 @@ std::string removeBraces(std::string s) {
 }
 
 void addState(Node* root, std::string state) {
-	std::cout << "Adding " << state << std::endl;
 	if (root->getValue().compare("Not Initialized") == 0) {
 		root->setValue(state);
 		return;
@@ -104,7 +103,9 @@ int main(int argc, const char * argv[])
     	addState(statesRoot, x);
     }
 
-    std::string statesArray[getNumStates(statesRoot)];
+    int stateCount = getNumStates(statesRoot);
+
+    std::string statesArray[stateCount];
     Node* temp = statesRoot;
     int tempCount = 0;
 
@@ -115,12 +116,8 @@ int main(int argc, const char * argv[])
     }
     statesArray[tempCount] = temp->getValue();
 
-    for (int i = 0; i < getNumStates(statesRoot); i++) {
-        std::cout << statesArray[i] << std::endl;
-    }
+    std::cout << x;
 
-    // printStates(statesRoot);
-    // std::cout << getNumStates(statesRoot) << std::endl;
     //Currently x has the number of the initialState
 
     return 0;
