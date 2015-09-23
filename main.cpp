@@ -362,9 +362,8 @@ int main(int argc, const char * argv[])
         std::cout << "Mark " << numEndingStates << std::endl;
 
         for (int i = 0; i < stateCount-1; i++) {
-            std::cout << "move(" << currentState << ", " << statesArray[i] << ")" << std::endl;
+            //std::cout << "move(" << currentState << ", " << statesArray[i] << ")" << std::endl;
             std::string moveState = move(currentState, nfaArray, statesArray[i] , i, numStates);
-            std::cout << moveState << std::endl;
 
             if (moveState.compare("") != 0) {
                 numEndingStates++;
