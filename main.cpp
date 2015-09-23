@@ -153,6 +153,8 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
             current = current->getNext();
         }
         std::string possibleMoves = current->getValue();
+
+        std::cout << "possibleMoves: " << possibleMoves << std::endl;
         // If there is somewhere to go along E
         if (possibleMoves.compare("") != 0) {
             // Loop over all states
