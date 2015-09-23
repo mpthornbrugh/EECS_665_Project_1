@@ -17,6 +17,7 @@
 #include "Node.cpp"
 #include "Node.h"
 
+// This function is used to find the E Closure of a state
 std::string findEClosure(Node** statesArray, int state, int numStates) {
     // Initialization
     bool visitedArr[numStates];
@@ -80,6 +81,7 @@ std::string findEClosure(Node** statesArray, int state, int numStates) {
     return closure;
 }
 
+// This function is used primarily for testing in order to display the state variables
 void printStates(Node* root) {
 	while (root->getNext() != NULL) {
 		std::cout << root->getValue() << " | ";
@@ -89,6 +91,7 @@ void printStates(Node* root) {
     std::cout << std::endl;
 }
 
+// This function is used primarily for testing in order to dipslay the state tree
 void printArray(Node** arr, int x) {
     for (int i = 0; i < x; i++) {
         printStates(arr[i]);
@@ -96,6 +99,7 @@ void printArray(Node** arr, int x) {
     }
 }
 
+// This function is used to find the number of state variables since the number is dynamic
 int getNumStates(Node* root) {
     int count = 0;
     while (root->getNext() != NULL) {
@@ -106,13 +110,16 @@ int getNumStates(Node* root) {
     return count;
 }
 
+// This is a helper function used in order to remove the { and } from strings
 std::string removeBraces(std::string s) {
 	s.erase(0, 1);
 	s.erase(s.size() - 1);
 	return s;
 }
 
+// This is used in order to create the state variable list
 void addState(Node* root, std::string state) {
+    // If the root isn't initialized then we are at the first state
 	if (root->getValue().compare("Not Initialized") == 0) {
 		root->setValue(state);
 		return;
@@ -120,10 +127,12 @@ void addState(Node* root, std::string state) {
 
 	Node* current = root;
 	
+    // Go through the list and find the last element
 	while (current->getNext() != NULL) {
 		current = current->getNext();
 	}
 
+    // Add the new state onto the list.
 	Node* newNode = new Node();
 	newNode->setValue(state);
 
@@ -162,14 +171,16 @@ int main(int argc, const char * argv[])
 
     int numStates = atoi(x.c_str());
 
-    std::cout << "Start State: " << initialState << std::endl;
-    std::cout << "Final State: " << finalState << std::endl;
-    std::cout << "Number of States: " << numStates << std::endl;
+    // Used for testing
+    // std::cout << "Start State: " << initialState << std::endl;
+    // std::cout << "Final State: " << finalState << std::endl;
+    // std::cout << "Number of States: " << numStates << std::endl;
 
     Node* statesRoot = new Node();
 
     std::cin >> x;//Removing 'State'
 
+    // Reading in the state variables into the statesRoot variable
     while (1) {
     	std::cin >> x;
     	if (atoi(x.c_str()) == initialState) {
@@ -190,6 +201,10 @@ int main(int argc, const char * argv[])
         temp = temp->getNext();
     }
     statesArray[tempCount] = temp->getValue();
+
+    for (int i = 0; i < stateCount; i++) {
+        std::cout << statesArray[i] << std::endl;
+    }
 
     Node* nfaArray[numStates];
 
