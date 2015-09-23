@@ -372,7 +372,7 @@ int main(int argc, const char * argv[])
 
                 // Get new E Closure of the moveState
                 std::string moveEClosure = findEClosure(nfaArray, moveState, numStates);
-                std::cout << "E-closure{" << moveState << "} = {" << moveEClosure << "} = " << numEndingStates
+                std::cout << "E-closure{" << moveState << "} = {" << moveEClosure << "} = " << numEndingStates << std::endl;
 
                 // Add E Closure to dStates
                 if (!inList(moveEClosure, dStates)) {
