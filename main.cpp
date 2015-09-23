@@ -15,22 +15,65 @@
 #include "Node.cpp"
 #include "Node.h"
 
-std::string findEClosure(Node** statesArray, int state, int stateCount) {
-    Node* cur = statesArray[state-1];
-    for (int i = 0; i < stateCount; i++) {
-        cur = cur->getNext();
+std::string findEClosure(Node** statesArray, int state, int numStates) {
+    // Initialization
+    bool visitedArr[numStates];
+    for (int i = 0; i < numStates; i++) {
+        visitedArr[i] = false;
     }
+    std::string closure = "";
 
+    // Create a double stack
+    // The first stack keeps track of the Nodes to track next states
+    // The second stack keeps track of the current node state
     std::stack<Node*> stack;
+    std::stack<int> numStack;
 
-    stack.push(cur);
+    // Add on the initial state to the stacks
+    stack.push(statesArray[state-1]);
+    numStack.push(state);
 
-    if (cur->getValue() == "") {
-        return "";
+    while (!stack.empty()) {
+        // Get the next items of the double stack
+        Node* current = stack.top();
+        int currentNum = numStack.top();
+        stack.pop();
+        numStack.pop();
+
+        // Add the state that we just got to the closure
+        visitedArr[currentNum-1] = true;
+
+        // Add any possibly visited states to the double stack
+        while (current->getNext() != NULL) {
+            current = current->getNext();
+        }
+        std::string possibleMoves = current->getValue();
+        // If there is somewhere to go along E
+        if (possibleMoves.compare("") != 0) {
+            // Loop over all states
+            while (possibleMoves.compare("") != 0) {
+                // Get the first state to move to
+                std::string substring = possibleMoves.substr(0, 1);
+                possibleMoves = possibleMoves.erase(0, 1);
+                // Since we only get once character it will grab the ','
+                if (substring.compare(",") != 0) {
+                    // Push this state onto the stack
+                    int newNum = atoi(substring);
+                    stack.push(statesArray[newNum - 1]);
+                    numStack.push(newNum);
+                }
+            }
+        }
     }
-    else {
-        
+
+    for (int i = 0; i < numStates; i++) {
+        if (visitedArr[i]) {
+            closure += (i+1);
+            closure += ",";
+        }
     }
+    closure.erase(closure.end()-1, 1);
+    return closure;
 }
 
 void printStates(Node* root) {
@@ -177,7 +220,9 @@ int main(int argc, const char * argv[])
         std::cin >> x; //Removes the State Number
     }
 
-    printArray(nfaArray, numStates);
+    var initialEClosure = findEClosure(statesArray, initialState, numStates);
+
+    std::cout << initialEClosure << std::endl;
 
     return 0;
 }
