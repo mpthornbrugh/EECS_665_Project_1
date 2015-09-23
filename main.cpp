@@ -73,7 +73,6 @@ std::string findEClosure(Node** statesArray, int state, int numStates) {
         }
     }
     closure = closure.substr(0, closure.size() - 1);
-    closure.erase(closure.end()-1, 1);
     return closure;
 }
 
