@@ -21,14 +21,6 @@ void printStates(Node* root) {
     std::cout << std::endl;
 }
 
-void printArray(int x, int y, std::string (*arr)[x][y]) {
-    for (int i = 0; i < x; i++) {
-        for (int j = 0; j < y; j++) {
-            std::cout << arr[i][j] << std::endl;
-        }
-    }
-}
-
 int getNumStates(Node* root) {
     int count = 0;
     while (root->getNext() != NULL) {
@@ -124,23 +116,35 @@ int main(int argc, const char * argv[])
     }
     statesArray[tempCount] = temp->getValue();
 
-    std::string nfaArray[numStates][stateCount];
+    std::string nfaArray[numStates];
+
+    Node* cur;
 
     for (int i = 0; i < numStates; i++) {
+        nfaArray[i] = new Node();
+        cur = nfaArray[i];
         for (int j = 0; j < stateCount; j++) {
             std::cin >> x;
             x = removeBraces(x);
             if (x.compare("") == 0) {
-                nfaArray[i][j] = "";
+                Node* newNode = new Node();
+                newNode->setValue("");
+                cur->setNext(newNode);
             }
             else {
-                nfaArray[i][j] = x;
+                Node* newNode = new Node();
+                newNode->setValue(x);
+                cur->setNext(newNode);
             }
+            cur = cur->getNext();
         }
         std::cin >> x; //Removes the State Number
     }
 
-    printArray(numStates, stateCount, &nfaArray);
+    for (int i = 0; i < numStates; i++) {
+        printStates(nfaArray[i]);
+        std::cout << std::endl;
+    }
 
     return 0;
 }
