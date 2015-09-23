@@ -81,7 +81,7 @@ int main(int argc, const char * argv[])
     std::cout << "Final State: " << finalState << std::endl;
     std::cout << "Number of States: " << numStates << std::endl;
 
-    Node* statesRoot;
+    Node* statesRoot = new Node();
 std::cout << "Hey" << std::endl;
     std::cout << statesRoot->getValue() << std::endl;
 std::cout << "Hey" << std::endl;
