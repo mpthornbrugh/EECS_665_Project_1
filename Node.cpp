@@ -1,101 +1,38 @@
 #include "Node.h"
 
-
-
-//Constructor
-
-template <typename T>
-
-Node<T>::Node()
-
+Node::Node()
 {
-
     m_next = NULL;
-
     m_parent = NULL;
-
+    m_value = "Not Initialized";
 }
-
-
-
-//Getter for m_value
-
-template <typename T>
 
 T Node<T>::getValue()
-
 {
-
     return m_value;
-
 }
 
-
-
-//Getter for m_next
-
-template <typename T>
-
-Node<T>* Node<T>::getNext()
-
+Node* Node::getNext()
 {
-
     return m_next;
-
 }
 
-
-
-//Getter for m_parent
-
-template <typename T>
-
-Node<T>* Node<T>::getParent()
-
+Node* Node::getParent()
 {
-
     return m_parent;
-
 }
 
-
-
-//Setter for m_value
-
-template <typename T>
-
-void Node<T>::setValue(T value)
-
+void Node::setValue(std::string value)
 {
-
     m_value = value;
-
 }
 
-
-
-//Setter for m_next
-
-template <typename T>
-
-void Node<T>::setNext(Node<T>* next)
-
+void Node::setNext(Node* next)
 {
-
     m_next = next;
-
 }
 
-
-
-//Setter for m_parent
-
-template <typename T>
-
-void Node<T>::setParent(Node<T>* parent)
-
+void Node::setParent(Node* parent)
 {
-
     m_parent = parent;
-
 }

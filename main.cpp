@@ -26,20 +26,20 @@ std::string removeBraces(std::string s) {
 	return s;
 }
 
-void addState(Node<std::string>* root, std::string state) {
+void addState(Node* root, std::string state) {
 	std::cout << "Adding " << state << std::endl;
 	if (root->getValue().compare("Not Initialized") == 0) {
 		root->setValue(state);
 		return;
 	}
 
-	Node<std::string>* current = root;
+	Node* current = root;
 	
 	while (current->getNext() != NULL) {
 		current = current->getNext();
 	}
 
-	Node<std::string>* newNode;
+	Node* newNode;
 	newNode->setValue(state);
 
 	current->setNext(newNode);
@@ -81,10 +81,12 @@ int main(int argc, const char * argv[])
     std::cout << "Final State: " << finalState << std::endl;
     std::cout << "Number of States: " << numStates << std::endl;
 
-    Node<std::string>* statesRoot;
+    Node* statesRoot;
 std::cout << "Hey" << std::endl;
-    statesRoot->setValue("Not Initialized");
+    std::cout << statesRoot->getValue() << std::endl;
 std::cout << "Hey" << std::endl;
+//     statesRoot->setValue("Not Initialized");
+// std::cout << "Hey" << std::endl;
     std::cin >> x;//Removing 'State'
 
     while (1) {
