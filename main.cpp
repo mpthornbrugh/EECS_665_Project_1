@@ -21,6 +21,13 @@ void printStates(Node* root) {
     std::cout << std::endl;
 }
 
+void printArray(Node* arr, int x) {
+    for (int i = 0; i < x; i++) {
+        printStates(nfaArray[i]);
+        std::cout << std::endl;
+    }
+}
+
 int getNumStates(Node* root) {
     int count = 0;
     while (root->getNext() != NULL) {
@@ -149,10 +156,7 @@ int main(int argc, const char * argv[])
         std::cin >> x; //Removes the State Number
     }
 
-    for (int i = 0; i < numStates; i++) {
-        printStates(nfaArray[i]);
-        std::cout << std::endl;
-    }
+    printArray(nfaArray, numStates);
 
     return 0;
 }
