@@ -21,7 +21,7 @@ void printStates(Node* root) {
     std::cout << std::endl;
 }
 
-void fillStateArray(Node* root, std::string arr&) {
+void fillStateArray(Node* root, std::string* arr) {
     int count = 0;
     while (root->getNext() != NULL) {
         arr[count] = root->getValue();
