@@ -123,7 +123,15 @@ int main(int argc, const char * argv[])
     for (int i = 0; i < numStates; i++) {
         nfaArray[i] = new Node();
         cur = nfaArray[i];
-        for (int j = 0; j < stateCount; j++) {
+        std::cin >> x;
+        x = removeBraces(x);
+        if (x.compare("") == 0) {
+            cur->setValue("");
+        }
+        else {
+            cur->setValue(x);
+        }
+        for (int j = 0; j < stateCount - 1; j++) {
             std::cin >> x;
             x = removeBraces(x);
             if (x.compare("") == 0) {
