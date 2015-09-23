@@ -21,7 +21,7 @@ void printStates(Node* root) {
     std::cout << std::endl;
 }
 
-void printArray(std::string (*arr)[x][y], int x, int y) {
+void printArray(int x, int y, std::string (*arr)[x][y]) {
     for (int i = 0; i < x; i++) {
         for (int j = 0; j < y; j++) {
             std::cout << arr[i][j] << std::endl;
@@ -140,7 +140,7 @@ int main(int argc, const char * argv[])
         std::cin >> x; //Removes the State Number
     }
 
-    printArray(&nfaArray, numStates, stateCount);
+    printArray(numStates, stateCount, &nfaArray);
 
     return 0;
 }
