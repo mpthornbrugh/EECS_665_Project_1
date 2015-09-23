@@ -1,5 +1,14 @@
-#ifndef __Lab5__Node__
-#define __Lab5__Node__
+//
+//  Node.h
+//  Project_1
+//  EECS_665
+//
+//  Created by Michael Thornbrugh on 9/17/15.
+//  Copyright (c) 2015 Michael Thornbrugh. All rights reserved.
+//
+
+#ifndef __Node__
+#define __Node__
 
 #include <iostream>
 
@@ -25,4 +34,4 @@ public:
     void setParent(Node* parent);
 };
 
-#endif /* defined(__Lab5__Node__) */
+#endif /* defined(__Node__) */
