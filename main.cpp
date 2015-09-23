@@ -116,7 +116,7 @@ int main(int argc, const char * argv[])
     }
     statesArray[tempCount] = temp->getValue();
 
-    std::string nfaArray[numStates];
+    std::string* nfaArray[numStates];
 
     Node* cur;
 
