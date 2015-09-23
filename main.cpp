@@ -92,7 +92,7 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
 }
 
 // This function is used to find the E Closure of a state
-std::string findEClosure(Node** statesArray, int state, int numStates) {
+std::string findEClosure(Node** statesArray, std::string state, int numStates) {
     // Initialization
     bool visitedArr[numStates];
     for (int i = 0; i < numStates; i++) {
@@ -106,9 +106,22 @@ std::string findEClosure(Node** statesArray, int state, int numStates) {
     std::stack<Node*> stack;
     std::stack<int> numStack;
 
-    // Add on the initial state to the stacks
-    stack.push(statesArray[state-1]);
-    numStack.push(state);
+    // Add the current states to the stack
+    if (state.compare("") != 0) {
+        // Loop over all states
+        while (state.compare("") != 0) {
+            // Get the first state to move to
+            std::string substring = state.substr(0, 1);
+            state = state.erase(0, 1);
+            // Since we only get once character it will grab the ','
+            if (substring.compare(",") != 0) {
+                // Push this state onto the stack
+                int newNum = atoi(substring.c_str());
+                stack.push(statesArray[newNum - 1]);
+                stack.push(newNum);
+            }
+        }
+    }
 
     while (!stack.empty()) {
         // Get the next items of the double stack
@@ -313,7 +326,10 @@ int main(int argc, const char * argv[])
 
     int numEndingStates = 0;
 
-    std::string initialEClosure = findEClosure(nfaArray, initialState, numStates);
+    std::stringstream ss;
+    ss << initialState;
+
+    std::string initialEClosure = findEClosure(nfaArray, ss.str(), numStates);
     numEndingStates++;
 
     std::cout << "E-Closure(I0) = {" << initialEClosure << "} = " << numEndingStates << std::endl << std::endl;
