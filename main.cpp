@@ -10,9 +10,28 @@
 #include <iostream>
 #include <string>
 #include <queue>
+#include <stack>
 #include <stdlib.h>
 #include "Node.cpp"
 #include "Node.h"
+
+std::string findEClosure(Node** statesArray, int state, int stateCount) {
+    Node* cur = statesArray[state-1];
+    for (int i = 0; i < stateCount; i++) {
+        cur = cur->getNext();
+    }
+
+    std::stack<Node*> stack;
+
+    stack.push(cur);
+
+    if (cur->getValue() == "") {
+        return "";
+    }
+    else {
+        
+    }
+}
 
 void printStates(Node* root) {
 	while (root->getNext() != NULL) {
