@@ -220,7 +220,7 @@ int main(int argc, const char * argv[])
         std::cin >> x; //Removes the State Number
     }
 
-    std::string initialEClosure = findEClosure(statesArray, initialState, numStates);
+    std::string initialEClosure = findEClosure(nfaArray, initialState, numStates);
 
     std::cout << initialEClosure << std::endl;
 
