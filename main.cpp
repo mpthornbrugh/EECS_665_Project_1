@@ -116,7 +116,22 @@ int main(int argc, const char * argv[])
     }
     statesArray[tempCount] = temp->getValue();
 
-    std::cout << x;
+    std::string nfaArray[numStates][stateCount];
+std::cout << "#####################" << std::endl;
+
+    for (int i = 0; i < numStates; i++) {
+        for (int j = 0; j < stateCount; j++) {
+            std::cin >> x;
+            removeBraces(x);
+            if (x.compare("") == 0) {
+                nfaArray[i][j] = "";
+            }
+            else {
+                nfaArray[i][j] = x;
+            }
+            std::cout << x << std::endl;
+        }
+    }
 
     //Currently x has the number of the initialState
 
