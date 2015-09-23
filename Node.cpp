@@ -7,7 +7,7 @@ Node::Node()
     m_value = "Not Initialized";
 }
 
-std::string Node<T>::getValue()
+std::string Node::getValue()
 {
     return m_value;
 }

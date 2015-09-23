@@ -12,7 +12,7 @@
 #include "Node.cpp"
 #include "Node.h"
 
-void printStates(Node<std::string>* root) {
+void printStates(Node* root) {
 	while (root->getNext() != NULL) {
 		std::cout << root->getValue() << " | ";
 		root = root->getNext();
