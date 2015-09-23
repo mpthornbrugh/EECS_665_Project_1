@@ -11,6 +11,8 @@
 #include <string>
 #include <queue>
 #include <stack>
+#include <sstream>
+#include <stdio.h>
 #include <stdlib.h>
 #include "Node.cpp"
 #include "Node.h"
@@ -68,7 +70,9 @@ std::string findEClosure(Node** statesArray, int state, int numStates) {
 
     for (int i = 0; i < numStates; i++) {
         if (visitedArr[i]) {
-            closure += std::string::to_string(i+1);
+            std::stringstream ss;
+            ss << (i+1);
+            closure += ss.str();
             closure += ",";
         }
     }
