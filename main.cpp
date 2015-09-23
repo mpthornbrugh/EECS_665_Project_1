@@ -39,7 +39,7 @@ void addState(Node* root, std::string state) {
 		current = current->getNext();
 	}
 
-	Node* newNode;
+	Node* newNode = new Node();
 	newNode->setValue(state);
 
 	current->setNext(newNode);
@@ -82,11 +82,7 @@ int main(int argc, const char * argv[])
     std::cout << "Number of States: " << numStates << std::endl;
 
     Node* statesRoot = new Node();
-std::cout << "Hey" << std::endl;
-    std::cout << statesRoot->getValue() << std::endl;
-std::cout << "Hey" << std::endl;
-//     statesRoot->setValue("Not Initialized");
-// std::cout << "Hey" << std::endl;
+    
     std::cin >> x;//Removing 'State'
 
     while (1) {
