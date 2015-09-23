@@ -21,7 +21,7 @@ void printStates(Node* root) {
     std::cout << std::endl;
 }
 
-void printArray(Node* arr, int x) {
+void printArray(Node** arr, int x) {
     for (int i = 0; i < x; i++) {
         printStates(nfaArray[i]);
         std::cout << std::endl;
