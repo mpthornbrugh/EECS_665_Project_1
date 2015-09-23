@@ -18,6 +18,17 @@ void printStates(Node* root) {
 		root = root->getNext();
 	}
 	std::cout << root->getValue();
+    std::cout << std::endl;
+}
+
+int getNumStates(Node* root) {
+    int count = 0;
+    while (root->getNext() != NULL) {
+        count++;
+        root = root->getNext();
+    }
+    count++;
+    return count;
 }
 
 std::string removeBraces(std::string s) {
@@ -82,7 +93,7 @@ int main(int argc, const char * argv[])
     std::cout << "Number of States: " << numStates << std::endl;
 
     Node* statesRoot = new Node();
-    
+
     std::cin >> x;//Removing 'State'
 
     while (1) {
@@ -94,6 +105,7 @@ int main(int argc, const char * argv[])
     }
 
     printStates(statesRoot);
+    std::cout << getNumStates(statesRoot) << std::endl;
     //Currently x has the number of the initialState
 
     return 0;
