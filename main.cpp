@@ -349,15 +349,15 @@ int main(int argc, const char * argv[])
 
     std::cout << "E-closure(I0) = {" << initialEClosure << "} = " << numEndingStates << std::endl << std::endl;
 
-    std::stack<std::string> EClosureStack;
-    EClosureStack.push(initialEClosure);
+    std::queue<std::string> EClosureQueue;
+    EClosureQueue.push(initialEClosure);
 
     Node* dStates = new Node();
     dStates->setValue(initialEClosure);
 
-    while (!EClosureStack.empty()) {
-        std::string currentState = EClosureStack.top();
-        EClosureStack.pop();
+    while (!EClosureQueue.empty()) {
+        std::string currentState = EClosureQueue.front();
+        EClosureQueue.pop();
 
         std::cout << "Mark " << numEndingStates << std::endl;
 
@@ -376,7 +376,7 @@ int main(int argc, const char * argv[])
 
                 // Add E Closure to dStates
                 if (!inList(moveEClosure, dStates)) {
-                    EClosureStack.push(moveEClosure);
+                    EClosureQueue.push(moveEClosure);
                     addState(dStates, moveEClosure);
                 }
             }
