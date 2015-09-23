@@ -118,7 +118,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
                 // Push this state onto the stack
                 int newNum = atoi(substring.c_str());
                 stack.push(statesArray[newNum - 1]);
-                stack.push(newNum);
+                numStack.push(newNum);
             }
         }
     }
