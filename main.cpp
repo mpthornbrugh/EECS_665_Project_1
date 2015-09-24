@@ -428,7 +428,7 @@ int main(int argc, const char * argv[])
         std::cout << "Mark " << numEndingStates << std::endl;
 
         std::stringstream stream;
-        stream << (numEndingStates;
+        stream << numEndingStates;
         std::string markedState = stream.str();
 
         for (int i = 0; i < stateCount-1; i++) {
