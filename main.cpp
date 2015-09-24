@@ -485,7 +485,7 @@ int main(int argc, const char * argv[])
 
         std::string currentCheckState = statesArray[i % (stateCount-1)];
 
-        std::cout << "current State: " << currentState << " | checkState: " << currentCheckState << std::endl;
+        std::cout << currentSubstring << std::endl;
 
         if (atoi(currentSubstring.substr(0,1).c_str()) == currentState) {
             if (currentSubstring.find(currentCheckState) != std::string::npos) {
