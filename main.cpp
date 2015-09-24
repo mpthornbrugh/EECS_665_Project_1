@@ -7,15 +7,15 @@
 //  Copyright (c) 2015 Michael Thornbrugh. All rights reserved.
 //
 
-#include <iostream>
-#include <string>
-#include <queue>
-#include <stack>
-#include <sstream>
-#include <stdio.h>
-#include <stdlib.h>
-#include "Node.cpp"
-#include "Node.h"
+#include <iostream> // Used for output
+#include <string>   // Used for all of the strings used throughout
+#include <queue>    // Used for running the scheduling for the conversion
+#include <stack>    // Used for the move and find E-closure functions
+#include <sstream>  // Used for integer to string conversions
+#include <stdio.h>  // Used for string to integer conversion
+#include <stdlib.h> // Used for string to integer conversions
+#include "Node.cpp" // Code file of the Node class used to make a linked list
+#include "Node.h"   // Header file for the Node class
 
 // This function is used to find the number of state variables since the number is dynamic
 int getNumStates(Node* root) {
@@ -163,6 +163,8 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
         }
     }
 
+    // Loop through the visited array in order to determine which nodes have been reached.
+    // This also handles removing duplicates.
     for (int i = 0; i < numStates; i++) {
         if (visitedArr[i]) {
             std::stringstream ss;
@@ -251,6 +253,8 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         }
     }
 
+    // Loop through the visited array in order to determine which nodes have been reached.
+    // This also handles removing duplicates.
     for (int i = 0; i < numStates; i++) {
         if (visitedArr[i]) {
             std::stringstream ss;
@@ -312,6 +316,9 @@ void addState(Node* root, std::string state) {
 
 int main(int argc, const char * argv[])
 {   
+    /*########################################################################################################################
+    *               Start | Receiving Inputs
+    ########################################################################################################################*/
     std::string x;
 
     for (int i = 0; i < 2; i++) {//Removing 'Initial State'
@@ -379,12 +386,14 @@ int main(int argc, const char * argv[])
         cur = nfaArray[i];
         std::cin >> x;
         x = removeBraces(x);
+        // Need this outside of the next loop because it is the root node
         if (x.compare("") == 0) {
             cur->setValue("");
         }
         else {
             cur->setValue(x);
         }
+        // Loop through each remaining state and add another node to the list of that state
         for (int j = 0; j < stateCount - 1; j++) {
             std::cin >> x;
             x = removeBraces(x);
@@ -403,42 +412,60 @@ int main(int argc, const char * argv[])
         std::cin >> x; //Removes the State Number
     }
 
-    int numEndingStates = 0;
+    /*########################################################################################################################
+    *               End | Receiving Inputs
+    ########################################################################################################################*/
 
+    /*########################################################################################################################
+    *               Start | Calculating DFA
+    ########################################################################################################################*/
+
+    // Initializing some variables
+    int numEndingStates = 0;
     std::stringstream ss;
     ss << initialState;
 
+    // Calculate initial E-closure
     std::string initialEClosure = findEClosure(nfaArray, ss.str(), numStates);
     numEndingStates++;
 
+    // Display the E-closure formatted nicely
     std::cout << "E-closure(I0) = {" << initialEClosure << "} = " << numEndingStates << std::endl << std::endl;
 
+    // Create the E-closure queue which will control what states to mark and check
     std::queue<std::string> EClosureQueue;
     EClosureQueue.push(initialEClosure);
 
+    // Create and add the initial E-closure to the dStates variable.
     Node* dStates = new Node();
     dStates->setValue(initialEClosure);
 
+    // This variable will be used to create the linking between the states in the DFA
     std::string mappings = "";
 
-    int markNum = 1;
+    int markNum = 1; // Used for output and mapping
 
+    // Loop through every possible linking.
     while (!EClosureQueue.empty()) {
+        // Get the next state to check
         std::string currentState = EClosureQueue.front();
         EClosureQueue.pop();
 
         std::cout << "Mark " << markNum << std::endl;
 
+        // Keep track of the current marked state for use in mapping
         ss.str("");
         ss << markNum;
         std::string markedState = ss.str();
 
         markNum++;
 
+        // Loop through all of the states excluding the E path
         for (int i = 0; i < stateCount-1; i++) {
-            //std::cout << "move(" << currentState << ", " << statesArray[i] << ")" << std::endl;
+            // Move the                  current State along     a,b,c,d, etc...
             std::string moveState = move(currentState, nfaArray, statesArray[i] , i, numStates);
 
+            // Check if any states can be moved to from the current state along statesArray[i]
             if (moveState.compare("") != 0) {
                 std::cout << "{" << currentState << "} --" << statesArray[i] << "--> {" << moveState << "}" << std::endl;
 
@@ -452,6 +479,7 @@ int main(int argc, const char * argv[])
                     EClosureQueue.push(moveEClosure);
                     addState(dStates, moveEClosure);
                 }
+                // Create the mapping between the currently marked state and the recently added state.
                 ss.str("");
                 ss << numEndingStates;
                 mappings += markedState + "," + statesArray[i] + "," + ss.str() + "|";
@@ -462,6 +490,7 @@ int main(int argc, const char * argv[])
         std::cout << std::endl;
     }
 
+    // Output formatted
     std::cout << "Initial State: {1}" << std::endl;
     std::cout << "Final States: {" << getFinalStates(dStates, finalState) << "}" << std::endl;
 
@@ -471,43 +500,58 @@ int main(int argc, const char * argv[])
     }
     std::cout << std::endl;
 
+    // Initialize variables for mapping calculations
     int currentState = 0;
     std::size_t breakPos = mappings.find('|');
     std::string currentSubstring = mappings.substr(0, breakPos);
     mappings = mappings.substr(breakPos+1);
 
+    // Loop through each ending mapping
     for (int i = 0; i < ((stateCount - 1)*getNumStates(dStates)); i++) {
+        // If we are in a new state print out the state number
         if (i % (stateCount-1) == 0) {
             ss.str("");
             ss << ++currentState;
             std::cout << ss.str() << "\t";
         }
 
+        // This will flip between the available states a then b then a or a then b then c then a
         std::string currentCheckState = statesArray[i % (stateCount-1)];
 
+        // If the current substring from the mapping corresponds to our current state
         if (atoi(currentSubstring.substr(0,1).c_str()) == currentState) {
+            // If the current substring from the mapping corresponds to our current state we are checking.
             if (currentSubstring.find(currentCheckState) != std::string::npos) {
+                // Move over the two ,'s. We already checked for those.
                 currentSubstring = currentSubstring.substr(currentSubstring.find(',')+1);
                 currentSubstring = currentSubstring.substr(currentSubstring.find(',')+1);
                 std::cout << "{" << currentSubstring << "}\t";
+                // Need to do this logic in the loop as well so that we don't miss a new line because we hit the correct cases
                 if ((i+1) % (stateCount-1) == 0) {
                     std::cout << std::endl;
                 }
+                // Used so that we don't try to call a substring on an empty string
                 if (mappings.compare("") == 0) {
+                    currentSubstring = "";
                     continue;
                 }
+                // Create the new substring now that we have used up the last one.
                 currentSubstring = mappings.substr(0, mappings.find('|'));
                 mappings = mappings.substr(breakPos+1);
                 continue;
             }
         }
+        // Display that there is no mapping for this location.
         std::cout << "{}\t";
+        // Display a new line if we are finished with a state.
         if ((i+1) % (stateCount-1) == 0) {
             std::cout << std::endl;
         }
     }
 
-    std::cout << mappings << std::endl;
+    /*########################################################################################################################
+    *               End | Calculating DFA
+    ########################################################################################################################*/
 
     return 0;
 }
