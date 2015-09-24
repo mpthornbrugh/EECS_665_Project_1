@@ -53,13 +53,14 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
         // Loop over all states
         while (possibleMoves.compare("") != 0) {
             // Get the first state to move to
-            std::string substring = possibleMoves.substr(0, 1);
-            possibleMoves = possibleMoves.erase(0, 1);
-            // Since we only get once character it will grab the ','
-            if (substring.compare(",") != 0) {
-                // Push this state onto the stack
-                int newNum = atoi(substring.c_str());
-                stack.push(statesArray[newNum - 1]);
+            std::size_t commaPos = state.find(',');
+            std::string substring;
+            if (commaPos == std::string::npos) {
+                substring = state;
+            }
+            else {
+                substring = state.substr(0, commaPos);
+                state = state.substr(commaPos+1);
             }
         }
     }  
@@ -81,14 +82,14 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
             // Loop over all states
             while (possibleMoves.compare("") != 0) {
                 // Get the first state to move to
-                std::string substring = possibleMoves.substr(0, 1);
-                possibleMoves = possibleMoves.erase(0, 1);
-                // Since we only get once character it will grab the ','
-                if (substring.compare(",") != 0) {
-                    // Push this state onto the stack
-                    int newNum = atoi(substring.c_str());
-                    stack.push(statesArray[newNum - 1]);
-                    visitedArr[newNum - 1] = true;
+                std::size_t commaPos = state.find(',');
+                std::string substring;
+                if (commaPos == std::string::npos) {
+                    substring = state;
+                }
+                else {
+                    substring = state.substr(0, commaPos);
+                    state = state.substr(commaPos+1);
                 }
             }
         }
@@ -126,15 +127,19 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         // Loop over all states
         while (state.compare("") != 0) {
             // Get the first state to move to
-            std::string substring = state.substr(0, 1);
-            state = state.erase(0, 1);
-            // Since we only get once character it will grab the ','
-            if (substring.compare(",") != 0) {
-                // Push this state onto the stack
-                int newNum = atoi(substring.c_str());
-                stack.push(statesArray[newNum - 1]);
-                numStack.push(newNum);
+            std::size_t commaPos = state.find(',');
+            std::string substring;
+            if (commaPos == std::string::npos) {
+                substring = state;
             }
+            else {
+                substring = state.substr(0, commaPos);
+                state = state.substr(commaPos+1);
+            }
+            // Push this state onto the stack
+            int newNum = atoi(substring.c_str());
+            stack.push(statesArray[newNum - 1]);
+            numStack.push(newNum);
         }
     }
 
@@ -161,17 +166,14 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
             // Loop over all states
             while (possibleMoves.compare("") != 0) {
                 // Get the first state to move to
-                std::string substring = possibleMoves.substr(0, 1);
-                possibleMoves = possibleMoves.erase(0, 1);
-                // Since we only get once character it will grab the ','
-                if (substring.compare(",") != 0) {
-                    // Push this state onto the stack
-                    int newNum = atoi(substring.c_str());
-                    stack.push(statesArray[newNum - 1]);
-                    if (newNum == 1) {
-                        std::cout << "checking state 1" << std::endl;
-                    }
-                    numStack.push(newNum);
+                std::size_t commaPos = state.find(',');
+                std::string substring;
+                if (commaPos == std::string::npos) {
+                    substring = state;
+                }
+                else {
+                    substring = state.substr(0, commaPos);
+                    state = state.substr(commaPos+1);
                 }
             }
         }
