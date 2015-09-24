@@ -63,6 +63,7 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
                 substring = possibleMoves.substr(0, commaPos);
                 possibleMoves = possibleMoves.substr(commaPos+1);
             }
+            std::cout << "Hey" << std::endl;
             int newNum = atoi(substring.c_str());
             stack.push(statesArray[newNum - 1]);
         }
