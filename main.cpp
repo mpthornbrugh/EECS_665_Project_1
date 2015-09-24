@@ -427,9 +427,9 @@ int main(int argc, const char * argv[])
 
         std::cout << "Mark " << numEndingStates << std::endl;
 
-        std::stringstream stream;
-        stream << numEndingStates;
-        std::string markedState = stream.str();
+        ss.str("");
+        ss << numEndingStates;
+        std::string markedState = ss.str();
 
         for (int i = 0; i < stateCount-1; i++) {
             //std::cout << "move(" << currentState << ", " << statesArray[i] << ")" << std::endl;
@@ -448,7 +448,9 @@ int main(int argc, const char * argv[])
                     EClosureQueue.push(moveEClosure);
                     addState(dStates, moveEClosure);
                 }
-                mappings += markedState + "," + statesArray[i] + "," + numEndingStates + "|";
+                ss.str("");
+                ss << numEndingStates;
+                mappings += markedState + "," + statesArray[i] + "," + ss.str() + "|";
                 std::cout << " = " << numEndingStates << std::endl;
             }
         }
