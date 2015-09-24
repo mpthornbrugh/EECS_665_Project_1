@@ -432,7 +432,7 @@ int main(int argc, const char * argv[])
         ss.str("");
         ss << markNum;
         std::string markedState = ss.str();
-        
+
         markNum++;
 
         for (int i = 0; i < stateCount-1; i++) {
@@ -470,6 +470,38 @@ int main(int argc, const char * argv[])
         std::cout << statesArray[i] << "\t";
     }
     std::cout << std::endl;
+
+    int currentState = 0;
+    std::size_t breakPos = mappings.find('|');
+    std::string currentSubstring = mappings.substr(0, breakPos);
+    mappings = mappings.substr(breakPos+1);
+
+    for (int i = 0; i < ((stateCount - 1)*getNumStates(dStates)); i++) {
+        if (i % (stateCount-1) == 0) {
+            ss.str("");
+            ss << ++currentState;
+            std::cout << ss.str() << "\t";
+        }
+
+        std::string currentCheckState = statesArray[i % (stateCount-1)];
+
+        if (atoi(currentSubstring.substr(0,1)) == currentState) {
+            if (currentSubstring.find(currentCheckState) != std::string::npos) {
+                currentSubstring = currentSubstring.substr(currentSubstring.find(',')+1);
+                currentSubstring = currentSubstring.substr(currentSubstring.find(',')+1);
+                std::cout << "{" << currentSubstring << "}\t";
+                if ((i+1) % (stateCount-1) == 0) {
+                    std::cout << std::endl;
+                }
+                currentSubstring = mappings.substr(0, mappings.find('|'));
+                continue;
+            }
+        }
+        std::cout << "{}\t";
+        if ((i+1) % (stateCount-1) == 0) {
+            std::cout << std::endl;
+        }
+    }
 
     std::cout << mappings << std::endl;
 
