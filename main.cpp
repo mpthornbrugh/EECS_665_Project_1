@@ -57,6 +57,7 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
             std::string substring;
             if (commaPos == std::string::npos) {
                 substring = possibleMoves;
+                possibleMoves = "";
             }
             else {
                 substring = possibleMoves.substr(0, commaPos);
@@ -86,6 +87,7 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
                 std::string substring;
                 if (commaPos == std::string::npos) {
                     substring = possibleMoves;
+                    possibleMoves = "";
                 }
                 else {
                     substring = possibleMoves.substr(0, commaPos);
@@ -132,6 +134,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
             std::string substring;
             if (commaPos == std::string::npos) {
                 substring = state;
+                state = "";
             }
             else {
                 substring = state.substr(0, commaPos);
@@ -145,7 +148,6 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
     }
 
     while (!stack.empty()) {
-        std::cout << "Hey" << std::endl;
         // Get the next items of the double stack
         Node* current = stack.top();
         int currentNum = numStack.top();
@@ -167,12 +169,12 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         if (possibleMoves.compare("") != 0) {
             // Loop over all states
             while (possibleMoves.compare("") != 0) {
-                std::cout << "Hey" << std::endl;
                 // Get the first state to move to
                 std::size_t commaPos = state.find(',');
                 std::string substring;
                 if (commaPos == std::string::npos) {
                     substring = state;
+                    state = "";
                 }
                 else {
                     substring = state.substr(0, commaPos);
