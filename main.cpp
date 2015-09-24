@@ -132,6 +132,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
             if (substring.compare(",") != 0) {
                 // Push this state onto the stack
                 int newNum = atoi(substring.c_str());
+                std::cout << "adding state: " << statesArray[newNum - 1]->getValue() << std::endl;
                 stack.push(statesArray[newNum - 1]);
                 numStack.push(newNum);
             }
@@ -145,6 +146,8 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         stack.pop();
         numStack.pop();
 
+        std::cout << "popped state: " << current->getValue() << std::endl;
+
         // Add the state that we just got to the closure
         visitedArr[currentNum-1] = true;
 
@@ -154,7 +157,6 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         }
         std::string possibleMoves = current->getValue();
 
-        std::cout << "possibleMoves: " << possibleMoves << std::endl;
         // If there is somewhere to go along E
         if (possibleMoves.compare("") != 0) {
             // Loop over all states
@@ -166,6 +168,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
                 if (substring.compare(",") != 0) {
                     // Push this state onto the stack
                     int newNum = atoi(substring.c_str());
+                    std::cout << "adding state: " << statesArray[newNum - 1]->getValue() << std::endl;
                     stack.push(statesArray[newNum - 1]);
                     numStack.push(newNum);
                 }
