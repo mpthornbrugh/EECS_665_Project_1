@@ -169,16 +169,17 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         if (possibleMoves.compare("") != 0) {
             // Loop over all states
             while (possibleMoves.compare("") != 0) {
+                std::cout << "Hey" << std::endl;
                 // Get the first state to move to
-                std::size_t commaPos = state.find(',');
+                std::size_t commaPos = possibleMoves.find(',');
                 std::string substring;
                 if (commaPos == std::string::npos) {
-                    substring = state;
-                    state = "";
+                    substring = possibleMoves;
+                    possibleMoves = "";
                 }
                 else {
-                    substring = state.substr(0, commaPos);
-                    state = state.substr(commaPos+1);
+                    substring = possibleMoves.substr(0, commaPos);
+                    possibleMoves = possibleMoves.substr(commaPos+1);
                 }
             }
         }
