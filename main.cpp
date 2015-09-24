@@ -496,6 +496,7 @@ int main(int argc, const char * argv[])
                     std::cout << std::endl;
                 }
                 currentSubstring = mappings.substr(0, mappings.find('|'));
+                mappings = mappings.substr(breakPos+1);
                 continue;
             }
         }
