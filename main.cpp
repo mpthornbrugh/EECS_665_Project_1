@@ -56,10 +56,8 @@ std::string getFinalStates(Node* root, std::string originalFinalStates) {
         // Loop through all of the new states
         for (int i = 0; i < numNewStates; i++) {
             std::string previousStateCorrelations = root->getValue();
-            std::cout << "Checking " << substring << " with " << previousStateCorrelations << std::endl;
             if (previousStateCorrelations.find(substring) != std::string::npos) {
                 visitedArr[i] = true;
-                std::cout << "Success!" << std::endl;
             }
             if (root->getNext() == NULL) {
                 break;
