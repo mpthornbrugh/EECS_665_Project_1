@@ -152,6 +152,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         while (current->getNext() != NULL) {
             current = current->getNext();
         }
+        std::string possibleMoves = current->getValue();
 
         std::cout << "possibleMoves: " << possibleMoves << std::endl;
         // If there is somewhere to go along E
