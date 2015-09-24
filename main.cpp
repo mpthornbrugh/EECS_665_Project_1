@@ -421,14 +421,17 @@ int main(int argc, const char * argv[])
 
     std::string mappings = "";
 
+    int markNum = 1;
+
     while (!EClosureQueue.empty()) {
         std::string currentState = EClosureQueue.front();
         EClosureQueue.pop();
 
-        std::cout << "Mark " << numEndingStates << std::endl;
+        std::cout << "Mark " << markNum << std::endl;
+        markNum++;
 
         ss.str("");
-        ss << numEndingStates;
+        ss << markNum;
         std::string markedState = ss.str();
 
         for (int i = 0; i < stateCount-1; i++) {
