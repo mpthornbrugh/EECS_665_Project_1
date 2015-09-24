@@ -493,6 +493,9 @@ int main(int argc, const char * argv[])
                 if ((i+1) % (stateCount-1) == 0) {
                     std::cout << std::endl;
                 }
+                if (mappings.compare("") == 0) {
+                    continue;
+                }
                 currentSubstring = mappings.substr(0, mappings.find('|'));
                 mappings = mappings.substr(breakPos+1);
                 continue;
