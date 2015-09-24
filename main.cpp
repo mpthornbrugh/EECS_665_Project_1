@@ -64,7 +64,6 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
                 possibleMoves = possibleMoves.substr(commaPos+1);
             }
             int newNum = atoi(substring.c_str());
-            std::cout << "Pushing " << newNum << " to stack" << std::endl;
             stack.push(statesArray[newNum - 1]);
         }
     }  
@@ -80,7 +79,7 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
         }
 
         possibleMoves = currentNode->getValue();
-std::cout << possibleMoves << std::endl;
+
         // Check that the current state has anywhere to go on the given moveAlong
         if (possibleMoves.compare("") != 0) {
             // Loop over all states
@@ -97,7 +96,6 @@ std::cout << possibleMoves << std::endl;
                     possibleMoves = possibleMoves.substr(commaPos+1);
                 }
                 int newNum = atoi(substring.c_str());
-                std::cout << "Found state: " << newNum << std::endl;
                 stack.push(statesArray[newNum - 1]);
                 visitedArr[newNum - 1] = true;
             }
@@ -188,6 +186,10 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
                     substring = possibleMoves.substr(0, commaPos);
                     possibleMoves = possibleMoves.substr(commaPos+1);
                 }
+                // Push this state onto the stack
+                int newNum = atoi(substring.c_str());
+                stack.push(statesArray[newNum - 1]);
+                numStack.push(newNum);
             }
         }
     }
