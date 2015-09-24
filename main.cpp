@@ -133,7 +133,6 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
     if (state.compare("") != 0) {
         // Loop over all states
         while (state.compare("") != 0) {
-            std::cout << state << std::endl;
             // Get the first state to move to
             std::size_t commaPos = state.find(',');
             std::string substring;
