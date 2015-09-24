@@ -428,11 +428,12 @@ int main(int argc, const char * argv[])
         EClosureQueue.pop();
 
         std::cout << "Mark " << markNum << std::endl;
-        markNum++;
 
         ss.str("");
         ss << markNum;
         std::string markedState = ss.str();
+        
+        markNum++;
 
         for (int i = 0; i < stateCount-1; i++) {
             //std::cout << "move(" << currentState << ", " << statesArray[i] << ")" << std::endl;
