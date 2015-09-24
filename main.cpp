@@ -17,6 +17,56 @@
 #include "Node.cpp"
 #include "Node.h"
 
+// Function used after converting to determine which new states are the final states.
+std::string getFinalStates(Node* root, std::string originalFinalStates) {
+    std::string finalStates = "";
+
+    int numNewStates = getNumStates(root);
+
+    bool visitedArr[numNewStates];
+    for (int i = 0; i < numNewStates; i++) {
+        visitedArr[i] = false;
+    }
+
+    // Loop through all of the original final states
+    while (originalFinalStates.compare("") != 0) {
+        std::size_t commaPos = originalFinalStates.find(',');
+        std::string substring;
+        if (commaPos == std::string::npos) {
+            substring = originalFinalStates;
+            originalFinalStates = "";
+        }
+        else {
+            substring = originalFinalStates.substr(0, commaPos);
+            originalFinalStates = originalFinalStates.substr(commaPos+1);
+        }
+        // Loop through all of the new states
+        for (int i = 0; i < numNewStates; i++) {
+            std::string previousStateCorrelations = root->getValue();
+            if (previousStateCorrelations.find(substring) != std::string::npos) {
+                visitedArr[i] = true;
+            }
+            if (root->getNext() == NULL) {
+                break;
+            }
+            root->getNext();
+        }
+    }
+
+    for (int i = 0; i < numNewStates; i++) {
+        if (visitedArr[i]) {
+            std::stringstream ss;
+            ss << (i+1);
+            finalStates += ss.str();
+            finalStates += ",";
+        }
+    }
+    finalStates = finalStates.substr(0, finalStates.size() - 1);
+
+    return finalStates;
+}
+
+// Function used to determine whether a state is already in dStates or not
 bool inList(std::string newState, Node* root) {
     while (root->getNext() != NULL) {
         if (root->getValue().compare(newState) == 0) {
@@ -282,7 +332,7 @@ int main(int argc, const char * argv[])
 
     x = removeBraces(x);
 
-    int finalState = atoi(x.c_str());
+    std::string finalState = x;
 
     for (int i = 0; i < 2; i++) {//Removing 'Total States'
     	std::cin >> x;
@@ -291,11 +341,6 @@ int main(int argc, const char * argv[])
     std::cin >> x;
 
     int numStates = atoi(x.c_str());
-
-    // Used for testing
-    // std::cout << "Start State: " << initialState << std::endl;
-    // std::cout << "Final State: " << finalState << std::endl;
-    // std::cout << "Number of States: " << numStates << std::endl;
 
     Node* statesRoot = new Node();
 
@@ -403,6 +448,16 @@ int main(int argc, const char * argv[])
 
         std::cout << std::endl;
     }
+
+    std::cout << "Initial State: {1}" << std::endl;
+    std::cout << "Final States: {" << getFinalStates(dStates, finalState) << "}" << std::endl;
+
+    std::cout << "State\t";
+    for (int i = 0; i < stateCount; i++) {
+        std::cout << statesArray[i] << "\t";
+    }
+    std::cout << std::endl;
+
 
     printStates(dStates);
 
