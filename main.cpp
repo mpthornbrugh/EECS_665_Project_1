@@ -485,7 +485,7 @@ int main(int argc, const char * argv[])
 
         std::string currentCheckState = statesArray[i % (stateCount-1)];
 
-        if (atoi(currentSubstring.substr(0,1)) == currentState) {
+        if (atoi(currentSubstring.substr(0,1).c_str()) == currentState) {
             if (currentSubstring.find(currentCheckState) != std::string::npos) {
                 currentSubstring = currentSubstring.substr(currentSubstring.find(',')+1);
                 currentSubstring = currentSubstring.substr(currentSubstring.find(',')+1);
