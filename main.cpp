@@ -159,8 +159,6 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         stack.pop();
         numStack.pop();
 
-        std::cout << "Visited State: " << currentNum << std::endl;
-
         // Add the state that we just got to the closure
         visitedArr[currentNum-1] = true;
 
@@ -174,7 +172,6 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         if (possibleMoves.compare("") != 0) {
             // Loop over all states
             while (possibleMoves.compare("") != 0) {
-                std::cout << "Hey" << std::endl;
                 // Get the first state to move to
                 std::size_t commaPos = possibleMoves.find(',');
                 std::string substring;
