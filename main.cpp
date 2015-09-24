@@ -126,6 +126,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
     if (state.compare("") != 0) {
         // Loop over all states
         while (state.compare("") != 0) {
+            std::cout << state << std::endl;
             // Get the first state to move to
             std::size_t commaPos = state.find(',');
             std::string substring;
@@ -144,6 +145,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
     }
 
     while (!stack.empty()) {
+        std::cout << "Hey" << std::endl;
         // Get the next items of the double stack
         Node* current = stack.top();
         int currentNum = numStack.top();
@@ -165,6 +167,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         if (possibleMoves.compare("") != 0) {
             // Loop over all states
             while (possibleMoves.compare("") != 0) {
+                std::cout << "Hey" << std::endl;
                 // Get the first state to move to
                 std::size_t commaPos = state.find(',');
                 std::string substring;
