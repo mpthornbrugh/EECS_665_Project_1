@@ -80,7 +80,7 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
         }
 
         possibleMoves = currentNode->getValue();
-
+std::cout << possibleMoves << std::endl;
         // Check that the current state has anywhere to go on the given moveAlong
         if (possibleMoves.compare("") != 0) {
             // Loop over all states
