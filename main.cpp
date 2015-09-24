@@ -63,6 +63,8 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
                 substring = possibleMoves.substr(0, commaPos);
                 possibleMoves = possibleMoves.substr(commaPos+1);
             }
+            int newNum = atoi(substring.c_str());
+            stack.push(statesArray[newNum - 1]);
         }
     }  
 
@@ -93,6 +95,9 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
                     substring = possibleMoves.substr(0, commaPos);
                     possibleMoves = possibleMoves.substr(commaPos+1);
                 }
+                int newNum = atoi(substring.c_str());
+                stack.push(statesArray[newNum - 1]);
+                visitedArr[newNum - 1] = true;
             }
         }
     }
