@@ -64,7 +64,7 @@ std::string getFinalStates(Node* root, std::string originalFinalStates) {
             if (root->getNext() == NULL) {
                 break;
             }
-            root->getNext();
+            root = root->getNext();
         }
     }
 
