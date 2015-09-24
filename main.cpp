@@ -426,7 +426,10 @@ int main(int argc, const char * argv[])
         EClosureQueue.pop();
 
         std::cout << "Mark " << numEndingStates << std::endl;
-        int markedState = numEndingStates;
+
+        std::stringstream stream;
+        stream << (numEndingStates;
+        std::string markedState = stream.str();
 
         for (int i = 0; i < stateCount-1; i++) {
             //std::cout << "move(" << currentState << ", " << statesArray[i] << ")" << std::endl;
