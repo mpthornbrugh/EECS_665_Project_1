@@ -17,6 +17,17 @@
 #include "Node.cpp"
 #include "Node.h"
 
+// This function is used to find the number of state variables since the number is dynamic
+int getNumStates(Node* root) {
+    int count = 0;
+    while (root->getNext() != NULL) {
+        count++;
+        root = root->getNext();
+    }
+    count++;
+    return count;
+}
+
 // Function used after converting to determine which new states are the final states.
 std::string getFinalStates(Node* root, std::string originalFinalStates) {
     std::string finalStates = "";
@@ -268,17 +279,6 @@ void printArray(Node** arr, int x) {
         printStates(arr[i]);
         std::cout << std::endl;
     }
-}
-
-// This function is used to find the number of state variables since the number is dynamic
-int getNumStates(Node* root) {
-    int count = 0;
-    while (root->getNext() != NULL) {
-        count++;
-        root = root->getNext();
-    }
-    count++;
-    return count;
 }
 
 // This is a helper function used in order to remove the { and } from strings
