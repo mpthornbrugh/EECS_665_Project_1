@@ -145,6 +145,8 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         stack.pop();
         numStack.pop();
 
+        std::cout << "Visited State: " << currentNum << std::endl;
+
         // Add the state that we just got to the closure
         visitedArr[currentNum-1] = true;
 
@@ -373,8 +375,6 @@ int main(int argc, const char * argv[])
 
             if (moveState.compare("") != 0) {
                 std::cout << "{" << currentState << "} --" << statesArray[i] << "--> {" << moveState << "}" << std::endl;
-
-                std::cout << "Calling moveEClosure with: " << moveState << std::endl;
 
                 // Get new E Closure of the moveState
                 std::string moveEClosure = findEClosure(nfaArray, moveState, numStates);
