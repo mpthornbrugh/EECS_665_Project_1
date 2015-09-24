@@ -404,6 +404,8 @@ int main(int argc, const char * argv[])
         std::cout << std::endl;
     }
 
+    printStates(dStates);
+
     return 0;
 }
 
