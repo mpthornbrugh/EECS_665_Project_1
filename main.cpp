@@ -34,8 +34,6 @@ std::string getFinalStates(Node* root, std::string originalFinalStates) {
 
     int numNewStates = getNumStates(root);
 
-    std::cout << numNewStates << std::endl;
-
     bool visitedArr[numNewStates];
     for (int i = 0; i < numNewStates; i++) {
         visitedArr[i] = false;
@@ -421,11 +419,14 @@ int main(int argc, const char * argv[])
     Node* dStates = new Node();
     dStates->setValue(initialEClosure);
 
+    std::string mappings = "";
+
     while (!EClosureQueue.empty()) {
         std::string currentState = EClosureQueue.front();
         EClosureQueue.pop();
 
         std::cout << "Mark " << numEndingStates << std::endl;
+        int markedState = numEndingStates;
 
         for (int i = 0; i < stateCount-1; i++) {
             //std::cout << "move(" << currentState << ", " << statesArray[i] << ")" << std::endl;
@@ -444,6 +445,7 @@ int main(int argc, const char * argv[])
                     EClosureQueue.push(moveEClosure);
                     addState(dStates, moveEClosure);
                 }
+                mappings += markedState + "," + statesArray[i] + "," + numEndingStates + "|";
                 std::cout << " = " << numEndingStates << std::endl;
             }
         }
@@ -460,8 +462,7 @@ int main(int argc, const char * argv[])
     }
     std::cout << std::endl;
 
-
-    printStates(dStates);
+    std::cout << mappings << std::endl;
 
     return 0;
 }
