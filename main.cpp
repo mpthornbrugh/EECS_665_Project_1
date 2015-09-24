@@ -97,6 +97,7 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
                     possibleMoves = possibleMoves.substr(commaPos+1);
                 }
                 int newNum = atoi(substring.c_str());
+                std::cout << "Found state: " << newNum << std::endl;
                 stack.push(statesArray[newNum - 1]);
                 visitedArr[newNum - 1] = true;
             }
