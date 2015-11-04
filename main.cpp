@@ -324,7 +324,6 @@ int main(int argc, const char * argv[])
     for (int i = 0; i < 2; i++) {//Removing 'Initial State'
     	std::cin >> x;
     }
-std::cout << "1" << std::endl;
 
     std::cin >> x;
 
@@ -380,7 +379,6 @@ std::cout << "1" << std::endl;
     Node* nfaArray[numStates];
 
     Node* cur;
-std::cout << "2" << std::endl;
 
     // This is the logic to read in the remainder of the file and create the tree of states
     for (int i = 0; i < numStates; i++) {
@@ -413,7 +411,6 @@ std::cout << "2" << std::endl;
         }
         std::cin >> x; //Removes the State Number
     }
-std::cout << "1" << std::endl;
 
     /*########################################################################################################################
     *               End | Receiving Inputs
@@ -427,6 +424,7 @@ std::cout << "1" << std::endl;
     int numEndingStates = 0;
     std::stringstream ss;
     ss << initialState;
+std::cout << "1" << std::endl;
 
     // Calculate initial E-closure
     std::string initialEClosure = findEClosure(nfaArray, ss.str(), numStates);
@@ -447,6 +445,7 @@ std::cout << "1" << std::endl;
     std::string mappings = "";
 
     int markNum = 1; // Used for output and mapping
+std::cout << "2" << std::endl;
 
     // Loop through every possible linking.
     while (!EClosureQueue.empty()) {
@@ -492,6 +491,7 @@ std::cout << "1" << std::endl;
 
         std::cout << std::endl;
     }
+std::cout << "3" << std::endl;
 
     // Output formatted
     std::cout << "Initial State: {1}" << std::endl;
