@@ -319,18 +319,12 @@ int main(int argc, const char * argv[])
     /*########################################################################################################################
     *               Start | Receiving Inputs
     ########################################################################################################################*/
-    int c = 1;
     std::string x;
-
-    std::cout << c << std::endl;
-    c++;
 
     for (int i = 0; i < 2; i++) {//Removing 'Initial State'
     	std::cin >> x;
     }
-
-    std::cout << c << std::endl;
-    c++;
+std::cout << "1" << std::endl;
 
     std::cin >> x;
 
@@ -368,8 +362,6 @@ int main(int argc, const char * argv[])
     	}
     	addState(statesRoot, x);
     }
-    std::cout << c << std::endl;
-    c++;
 
     int stateCount = getNumStates(statesRoot);
 
@@ -388,9 +380,7 @@ int main(int argc, const char * argv[])
     Node* nfaArray[numStates];
 
     Node* cur;
-
-    std::cout << c << std::endl;
-    c++;
+std::cout << "2" << std::endl;
 
     // This is the logic to read in the remainder of the file and create the tree of states
     for (int i = 0; i < numStates; i++) {
@@ -423,9 +413,8 @@ int main(int argc, const char * argv[])
         }
         std::cin >> x; //Removes the State Number
     }
+std::cout << "1" << std::endl;
 
-std::cout << c << std::endl;
-    c++;
     /*########################################################################################################################
     *               End | Receiving Inputs
     ########################################################################################################################*/
