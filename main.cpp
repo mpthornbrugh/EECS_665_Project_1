@@ -185,7 +185,6 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         visitedArr[i] = false;
     }
     std::string closure = "";
-std::cout << "1" << std::endl;
 
     // Create a double stack
     // The first stack keeps track of the Nodes to track next states
@@ -214,12 +213,12 @@ std::cout << "1" << std::endl;
             numStack.push(newNum);
         }
     }
-std::cout << "2" << std::endl;
 
     while (!stack.empty()) {
         // Get the next items of the double stack
         Node* current = stack.top();
         int currentNum = numStack.top();
+        std::cout << currentNum << std::endl;
         stack.pop();
         numStack.pop();
 
@@ -254,7 +253,6 @@ std::cout << "2" << std::endl;
             }
         }
     }
-std::cout << "3" << std::endl;
 
     // Loop through the visited array in order to determine which nodes have been reached.
     // This also handles removing duplicates.
