@@ -428,6 +428,7 @@ std::cout << "1" << std::endl;
 
     // Calculate initial E-closure
     std::string initialEClosure = findEClosure(nfaArray, ss.str(), numStates);
+std::cout << "2" << std::endl;
     numEndingStates++;
 
     // Display the E-closure formatted nicely
@@ -445,7 +446,6 @@ std::cout << "1" << std::endl;
     std::string mappings = "";
 
     int markNum = 1; // Used for output and mapping
-std::cout << "2" << std::endl;
 
     // Loop through every possible linking.
     while (!EClosureQueue.empty()) {
@@ -491,7 +491,6 @@ std::cout << "2" << std::endl;
 
         std::cout << std::endl;
     }
-std::cout << "3" << std::endl;
 
     // Output formatted
     std::cout << "Initial State: {1}" << std::endl;
