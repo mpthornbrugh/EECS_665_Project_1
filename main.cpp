@@ -185,6 +185,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         visitedArr[i] = false;
     }
     std::string closure = "";
+std::cout << "1" << std::endl;
 
     // Create a double stack
     // The first stack keeps track of the Nodes to track next states
@@ -213,6 +214,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
             numStack.push(newNum);
         }
     }
+std::cout << "2" << std::endl;
 
     while (!stack.empty()) {
         // Get the next items of the double stack
@@ -252,6 +254,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
             }
         }
     }
+std::cout << "3" << std::endl;
 
     // Loop through the visited array in order to determine which nodes have been reached.
     // This also handles removing duplicates.
@@ -424,11 +427,10 @@ int main(int argc, const char * argv[])
     int numEndingStates = 0;
     std::stringstream ss;
     ss << initialState;
-std::cout << "1" << std::endl;
 
     // Calculate initial E-closure
     std::string initialEClosure = findEClosure(nfaArray, ss.str(), numStates);
-std::cout << "2" << std::endl;
+std::cout << "Made it out!" << std::endl;
     numEndingStates++;
 
     // Display the E-closure formatted nicely
