@@ -103,6 +103,10 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
         visitedArr[i] = false;
     }
     std::string moveVal = "";
+    bool statesAlreadyVisited[numStates];
+    for (int i = 0; i < numStates; i++) {
+        statesAlreadyVisited[i] = false;
+    }
 
     // A stack used to track next nodes
     std::stack<Node*> stack;
@@ -157,8 +161,12 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
                     possibleMoves = possibleMoves.substr(commaPos+1);
                 }
                 int newNum = atoi(substring.c_str());
+                if (statesAlreadyVisited[newNum]) {
+                    continue;
+                }
                 stack.push(statesArray[newNum - 1]);
                 visitedArr[newNum - 1] = true;
+                statesAlreadyVisited[newNum] = true;
             }
         }
     }
@@ -185,7 +193,10 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         visitedArr[i] = false;
     }
     std::string closure = "";
-    std::string statesAlreadyVisited = "";
+    bool statesAlreadyVisited[numStates];
+    for (int i = 0; i < numStates; i++) {
+        statesAlreadyVisited[i] = false;
+    }
 
     // Create a double stack
     // The first stack keeps track of the Nodes to track next states
@@ -246,15 +257,14 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
                     substring = possibleMoves.substr(0, commaPos);
                     possibleMoves = possibleMoves.substr(commaPos+1);
                 }
-                if (statesAlreadyVisited.find(substring) != std::string::npos) {
-                    continue;
-                }
                 // Push this state onto the stack
                 int newNum = atoi(substring.c_str());
+                if (statesAlreadyVisited[newNum]) {
+                    continue;
+                }
                 stack.push(statesArray[newNum - 1]);
                 numStack.push(newNum);
-                statesAlreadyVisited += substring;
-                statesAlreadyVisited += " ";
+                statesAlreadyVisited[newNum] = true;
             }
         }
     }
@@ -470,7 +480,6 @@ int main(int argc, const char * argv[])
         for (int i = 0; i < stateCount-1; i++) {
             // Move the                  current State along     a,b,c,d, etc...
             std::string moveState = move(currentState, nfaArray, statesArray[i] , i, numStates);
-            std::cout << "1" << std::endl;
 
             // Check if any states can be moved to from the current state along statesArray[i]
             if (moveState.compare("") != 0) {
