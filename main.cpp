@@ -219,7 +219,6 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         // Get the next items of the double stack
         Node* current = stack.top();
         int currentNum = numStack.top();
-        std::cout << currentNum << std::endl;
         stack.pop();
         numStack.pop();
 
@@ -434,7 +433,6 @@ int main(int argc, const char * argv[])
 
     // Calculate initial E-closure
     std::string initialEClosure = findEClosure(nfaArray, ss.str(), numStates);
-std::cout << "Made it out!" << std::endl;
     numEndingStates++;
 
     // Display the E-closure formatted nicely
@@ -472,6 +470,7 @@ std::cout << "Made it out!" << std::endl;
         for (int i = 0; i < stateCount-1; i++) {
             // Move the                  current State along     a,b,c,d, etc...
             std::string moveState = move(currentState, nfaArray, statesArray[i] , i, numStates);
+            std::cout << "1" << std::endl;
 
             // Check if any states can be moved to from the current state along statesArray[i]
             if (moveState.compare("") != 0) {
