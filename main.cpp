@@ -436,6 +436,12 @@ int main(int argc, const char * argv[])
     *               Start | Calculating DFA
     ########################################################################################################################*/
 
+    std::string eClosures[numStates];
+    for (int i = 0; i < numStates; i++) {
+        eClosures[i] = "";
+    }
+    int highestEClosure = 0;
+
     // Initializing some variables
     int numEndingStates = 0;
     std::stringstream ss;
@@ -443,10 +449,12 @@ int main(int argc, const char * argv[])
 
     // Calculate initial E-closure
     std::string initialEClosure = findEClosure(nfaArray, ss.str(), numStates);
+    eClosures[highestEClosure] = initialEClosure;
+    highestEClosure++;
     numEndingStates++;
 
     // Display the E-closure formatted nicely
-    std::cout << "E-closure(I0) = {" << initialEClosure << "} = " << numEndingStates << std::endl << std::endl;
+    std::cout << "E-closure(I0) = {" << initialEClosure << "} = " << highestEClosure << std::endl << std::endl;
 
     // Create the E-closure queue which will control what states to mark and check
     std::queue<std::string> EClosureQueue;
@@ -489,6 +497,20 @@ int main(int argc, const char * argv[])
                 std::string moveEClosure = findEClosure(nfaArray, moveState, numStates);
                 std::cout << "E-closure{" << moveState << "} = {" << moveEClosure << "}";
 
+                int location = -1;
+                //Loop through all EClosures to find the eclosure equal to the current one or create a new EClosure.
+                for (int j = 0; j < highestEClosure; j++) {
+                    if (eClosures[j].compare(moveEClosure) == 0) {
+                        location = j+1;
+                    }
+                }
+                if (location == -1) {
+                    //Need to create a new E Closure
+                    eClosures[highestEClosure] = moveEClosure;
+                    highestEClosure++;
+                    location = highestEClosure;
+                }
+
                 // Add E Closure to dStates
                 if (!inList(moveEClosure, dStates)) {
                     numEndingStates++;
@@ -499,7 +521,7 @@ int main(int argc, const char * argv[])
                 ss.str("");
                 ss << numEndingStates;
                 mappings += markedState + "," + statesArray[i] + "," + ss.str() + "|";
-                std::cout << " = " << numEndingStates << std::endl;
+                std::cout << " = " << location << std::endl;
             }
         }
 
