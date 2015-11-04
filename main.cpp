@@ -519,8 +519,8 @@ int main(int argc, const char * argv[])
                 }
                 // Create the mapping between the currently marked state and the recently added state.
                 ss.str("");
-                ss << numEndingStates;
-                mappings += markedState + "," + statesArray[i] + "," + location + "|";
+                ss << location;
+                mappings += markedState + "," + statesArray[i] + "," + ss.str() + "|";
                 std::cout << " = " << location << std::endl;
             }
         }
