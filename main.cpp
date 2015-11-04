@@ -185,6 +185,7 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
         visitedArr[i] = false;
     }
     std::string closure = "";
+    std::string statesAlreadyVisited = "";
 
     // Create a double stack
     // The first stack keeps track of the Nodes to track next states
@@ -246,10 +247,15 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
                     substring = possibleMoves.substr(0, commaPos);
                     possibleMoves = possibleMoves.substr(commaPos+1);
                 }
+                if (statesAlreadyVisited.find(substring) != std::string::npos) {
+                    continue;
+                }
                 // Push this state onto the stack
                 int newNum = atoi(substring.c_str());
                 stack.push(statesArray[newNum - 1]);
                 numStack.push(newNum);
+                statesAlreadyVisited += substring;
+                statesAlreadyVisited += " ";
             }
         }
     }
