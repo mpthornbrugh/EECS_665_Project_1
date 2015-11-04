@@ -161,12 +161,12 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
                     possibleMoves = possibleMoves.substr(commaPos+1);
                 }
                 int newNum = atoi(substring.c_str());
-                if (statesAlreadyVisited[newNum]) {
+                if (statesAlreadyVisited[newNum-1]) {
                     continue;
                 }
                 stack.push(statesArray[newNum - 1]);
                 visitedArr[newNum - 1] = true;
-                statesAlreadyVisited[newNum] = true;
+                statesAlreadyVisited[newNum-1] = true;
             }
         }
     }
@@ -259,12 +259,12 @@ std::string findEClosure(Node** statesArray, std::string state, int numStates) {
                 }
                 // Push this state onto the stack
                 int newNum = atoi(substring.c_str());
-                if (statesAlreadyVisited[newNum]) {
+                if (statesAlreadyVisited[newNum-1]) {
                     continue;
                 }
                 stack.push(statesArray[newNum - 1]);
                 numStack.push(newNum);
-                statesAlreadyVisited[newNum] = true;
+                statesAlreadyVisited[newNum-1] = true;
             }
         }
     }
