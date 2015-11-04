@@ -322,6 +322,9 @@ int main(int argc, const char * argv[])
     int c = 1;
     std::string x;
 
+    std::cout << c << std::endl;
+    c++;
+
     for (int i = 0; i < 2; i++) {//Removing 'Initial State'
     	std::cin >> x;
     }
