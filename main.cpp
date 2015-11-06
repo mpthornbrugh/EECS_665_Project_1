@@ -533,6 +533,13 @@ int main(int argc, const char * argv[])
 
     // Output formatted
     std::cout << "Initial State: {1}" << std::endl;
+
+    std::cout << std::endl;
+    for (int i = 0; i < highestEClosure; i++) {
+        std::cout << eClosures[i] << std::endl;
+    }
+    std::cout << std::endl;
+
     std::cout << "Final States: {" << getFinalStates(dStates, finalState) << "}" << std::endl;
 
     std::cout << "State\t";
