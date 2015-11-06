@@ -164,7 +164,7 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
                 if (statesAlreadyVisited[newNum-1]) {
                     continue;
                 }
-                //stack.push(statesArray[newNum - 1]);
+                //stack.push(statesArray[newNum - 1]); Removed the recursion
                 visitedArr[newNum - 1] = true;
                 statesAlreadyVisited[newNum-1] = true;
             }
@@ -492,9 +492,10 @@ int main(int argc, const char * argv[])
             // Check if any states can be moved to from the current state along statesArray[i]
             if (moveState.compare("") != 0) {
                 std::cout << "{" << currentState << "} --" << statesArray[i] << "--> {" << moveState << "}" << std::endl;
-
+std::cout << "Hey1" << std::endl;
                 // Get new E Closure of the moveState
                 std::string moveEClosure = findEClosure(nfaArray, moveState, numStates);
+std::cout << "Hey2" << std::endl;                
                 std::cout << "E-closure{" << moveState << "} = {" << moveEClosure << "}";
 
                 int location = -1;
