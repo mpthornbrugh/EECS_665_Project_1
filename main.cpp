@@ -560,7 +560,7 @@ int main(int argc, const char * argv[])
 
         // If the current substring from the mapping corresponds to our current state
         std::size_t commaPos = mappings.find(',');
-        std::cout << currentSubstring.substr(0,commaPos) << std::endl;
+        std::cout << currentSubstring << std::endl;
         if (atoi(currentSubstring.substr(0,commaPos).c_str()) == currentState) {
             // If the current substring from the mapping corresponds to our current state we are checking.
             if (currentSubstring.find(currentCheckState) != std::string::npos) {
@@ -585,7 +585,6 @@ int main(int argc, const char * argv[])
             }
         }
         std::cout << "No Mapping\t";
-        std::cout << currentSubstring << std::endl;
 
         // Display that there is no mapping for this location.
         std::cout << "{}\t";
