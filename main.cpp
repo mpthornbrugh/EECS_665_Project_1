@@ -555,9 +555,6 @@ int main(int argc, const char * argv[])
             std::cout << ss.str() << "\t";
         }
 
-        std::cout << currentSubstring << std::endl;
-        std::cout << mappings << std::endl;
-
         // This will flip between the available states a then b then a or a then b then c then a
         std::string currentCheckState = statesArray[i % (stateCount-1)];
 
@@ -585,6 +582,7 @@ int main(int argc, const char * argv[])
                 continue;
             }
         }
+        std::cout << "No Mapping" << std::endl;
         // Display that there is no mapping for this location.
         std::cout << "{}\t";
         // Display a new line if we are finished with a state.
