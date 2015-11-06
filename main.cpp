@@ -555,6 +555,9 @@ int main(int argc, const char * argv[])
             std::cout << ss.str() << "\t";
         }
 
+        std::cout << currentSubstring << std::endl;
+        std::cout << mappings << std::endl;
+
         // This will flip between the available states a then b then a or a then b then c then a
         std::string currentCheckState = statesArray[i % (stateCount-1)];
 
