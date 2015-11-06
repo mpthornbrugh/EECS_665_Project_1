@@ -528,8 +528,6 @@ int main(int argc, const char * argv[])
         std::cout << std::endl;
     }
 
-    std::cout << std::endl << mappings << std::endl;
-
     // Output formatted
     std::cout << "Initial State: {1}" << std::endl;
     std::cout << "Final States: {" << getFinalStates(dStates, finalState) << "}" << std::endl;
@@ -546,8 +544,8 @@ int main(int argc, const char * argv[])
     std::string currentSubstring = mappings.substr(0, breakPos);
     mappings = mappings.substr(breakPos+1);
 
-    std::cout << mappings << std::endl;
     std::cout << currentSubstring << std::endl;
+    std::cout << ((stateCount - 1)*getNumStates(dStates)) << std::endl;
 
     // Loop through each ending mapping
     for (int i = 0; i < ((stateCount - 1)*getNumStates(dStates)); i++) {
