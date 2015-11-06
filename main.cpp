@@ -436,8 +436,8 @@ int main(int argc, const char * argv[])
     *               Start | Calculating DFA
     ########################################################################################################################*/
 
-    std::string eClosures[numStates];
-    for (int i = 0; i < numStates; i++) {
+    std::string eClosures[numStates * 10];
+    for (int i = 0; i < numStates * 10; i++) {
         eClosures[i] = "";
     }
     int highestEClosure = 0;
@@ -492,12 +492,10 @@ int main(int argc, const char * argv[])
             // Check if any states can be moved to from the current state along statesArray[i]
             if (moveState.compare("") != 0) {
                 std::cout << "{" << currentState << "} --" << statesArray[i] << "--> {" << moveState << "}" << std::endl;
-std::cout << "Hey1" << std::endl;
+
                 // Get new E Closure of the moveState
                 std::string moveEClosure = findEClosure(nfaArray, moveState, numStates);
-std::cout << "Hey2" << std::endl;                
                 std::cout << "E-closure{" << moveState << "} = {" << moveEClosure << "}";
-std::cout << "Hey3" << std::endl;                
 
                 int location = -1;
                 //Loop through all EClosures to find the eclosure equal to the current one or create a new EClosure.
