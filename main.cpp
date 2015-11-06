@@ -40,6 +40,8 @@ std::string getFinalStates(Node* root, std::string originalFinalStates) {
         visitedArr[i] = false;
     }
 
+    std::cout << originalFinalStates << std::endl;
+
     // Loop through all of the original final states
     while (originalFinalStates.compare("") != 0) {
         std::size_t commaPos = originalFinalStates.find(',');
