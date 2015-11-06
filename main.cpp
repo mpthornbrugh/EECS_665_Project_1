@@ -33,6 +33,7 @@ std::string getFinalStates(Node* root, std::string originalFinalStates) {
     std::string finalStates = "";
 
     int numNewStates = getNumStates(root);
+    std::cout << numNewStates << std::endl;
 
     bool visitedArr[numNewStates];
     for (int i = 0; i < numNewStates; i++) {
