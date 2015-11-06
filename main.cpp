@@ -555,9 +555,6 @@ int main(int argc, const char * argv[])
             std::cout << ss.str() << "\t";
         }
 
-        std::cout << currentSubstring << std::endl;
-        std::cout << mappings << std::endl;
-
         // This will flip between the available states a then b then a or a then b then c then a
         std::string currentCheckState = statesArray[i % (stateCount-1)];
 
@@ -580,6 +577,7 @@ int main(int argc, const char * argv[])
                 }
                 // Create the new substring now that we have used up the last one.
                 currentSubstring = mappings.substr(0, mappings.find('|'));
+                std::size_t breakPos = mappings.find('|');
                 mappings = mappings.substr(breakPos+1);
                 continue;
             }
