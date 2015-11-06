@@ -544,8 +544,7 @@ int main(int argc, const char * argv[])
     std::string currentSubstring = mappings.substr(0, breakPos);
     mappings = mappings.substr(breakPos+1);
 
-    std::cout << currentSubstring << std::endl;
-    std::cout << ((stateCount - 1)*getNumStates(dStates)) << std::endl;
+    //std::cout << currentSubstring << std::endl;
 
     // Loop through each ending mapping
     for (int i = 0; i < ((stateCount - 1)*getNumStates(dStates)); i++) {
@@ -555,6 +554,8 @@ int main(int argc, const char * argv[])
             ss << ++currentState;
             std::cout << ss.str() << "\t";
         }
+
+        std::cout << currentSubstring << std::endl;
 
         // This will flip between the available states a then b then a or a then b then c then a
         std::string currentCheckState = statesArray[i % (stateCount-1)];
