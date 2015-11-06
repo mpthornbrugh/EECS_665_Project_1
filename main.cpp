@@ -559,7 +559,8 @@ int main(int argc, const char * argv[])
         std::string currentCheckState = statesArray[i % (stateCount-1)];
 
         // If the current substring from the mapping corresponds to our current state
-        if (atoi(currentSubstring.substr(0,1).c_str()) == currentState) {
+        std::size_t commaPos = mappings.find(',');
+        if (atoi(currentSubstring.substr(0,commaPos).c_str()) == currentState) {
             // If the current substring from the mapping corresponds to our current state we are checking.
             if (currentSubstring.find(currentCheckState) != std::string::npos) {
                 // Move over the two ,'s. We already checked for those.
