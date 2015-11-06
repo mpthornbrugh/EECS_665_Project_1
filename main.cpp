@@ -561,7 +561,7 @@ int main(int argc, const char * argv[])
             endFinalStates += ",";
         }
     }
-    endFinalStates = endFinalStates.substr(0,-1);
+    endFinalStates.erase(endFinalStates.size()-1);
 
     std::cout << endFinalStates << std::endl;
     
