@@ -164,7 +164,7 @@ std::string move(std::string currentState, Node** statesArray, std::string moveA
                 if (statesAlreadyVisited[newNum-1]) {
                     continue;
                 }
-                stack.push(statesArray[newNum - 1]);
+                //stack.push(statesArray[newNum - 1]);
                 visitedArr[newNum - 1] = true;
                 statesAlreadyVisited[newNum-1] = true;
             }
