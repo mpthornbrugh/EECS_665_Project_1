@@ -544,8 +544,6 @@ int main(int argc, const char * argv[])
     std::string currentSubstring = mappings.substr(0, breakPos);
     mappings = mappings.substr(breakPos+1);
 
-    std::cout << mappings << std::endl;
-
     // Loop through each ending mapping
     for (int i = 0; i < ((stateCount - 1)*getNumStates(dStates)); i++) {
         // If we are in a new state print out the state number
@@ -560,7 +558,6 @@ int main(int argc, const char * argv[])
 
         // If the current substring from the mapping corresponds to our current state
         std::size_t commaPos = mappings.find(',');
-        std::cout << currentSubstring << std::endl;
         if (atoi(currentSubstring.substr(0,commaPos).c_str()) == currentState) {
             // If the current substring from the mapping corresponds to our current state we are checking.
             if (currentSubstring.find(currentCheckState) != std::string::npos) {
@@ -584,7 +581,6 @@ int main(int argc, const char * argv[])
                 continue;
             }
         }
-        std::cout << "No Mapping\t";
 
         // Display that there is no mapping for this location.
         std::cout << "{}\t";
