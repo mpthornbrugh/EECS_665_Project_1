@@ -560,6 +560,7 @@ int main(int argc, const char * argv[])
 
         // If the current substring from the mapping corresponds to our current state
         std::size_t commaPos = mappings.find(',');
+        std::cout << currentSubstring.substr(0,commaPos) << std::endl;
         if (atoi(currentSubstring.substr(0,commaPos).c_str()) == currentState) {
             // If the current substring from the mapping corresponds to our current state we are checking.
             if (currentSubstring.find(currentCheckState) != std::string::npos) {
