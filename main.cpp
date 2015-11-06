@@ -583,7 +583,9 @@ int main(int argc, const char * argv[])
                 continue;
             }
         }
-        std::cout << "No Mapping" << std::endl;
+        std::cout << "No Mapping\t";
+        std::cout << currentSubstring << std::endl;
+
         // Display that there is no mapping for this location.
         std::cout << "{}\t";
         // Display a new line if we are finished with a state.
