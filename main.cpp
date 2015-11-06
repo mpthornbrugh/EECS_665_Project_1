@@ -531,7 +531,6 @@ int main(int argc, const char * argv[])
     // Output formatted
     std::cout << "Initial State: {1}" << std::endl;
 
-    std::cout << std::endl;
     std::string endFinalStates = "";
     bool checkArray[highestEClosure];
     for (int i = 0; i < highestEClosure; i++) {
@@ -563,11 +562,7 @@ int main(int argc, const char * argv[])
     }
     endFinalStates.erase(endFinalStates.size()-1);
 
-    std::cout << endFinalStates << std::endl;
-    
-    std::cout << std::endl;
-
-    std::cout << "Final States: {" << getFinalStates(dStates, finalState) << "}" << std::endl;
+    std::cout << "Final States: {" << endFinalStates << "}" << std::endl;
 
     std::cout << "State\t";
     for (int i = 0; i < stateCount - 1; i++) {
