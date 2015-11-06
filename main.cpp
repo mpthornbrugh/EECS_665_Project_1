@@ -547,6 +547,7 @@ int main(int argc, const char * argv[])
     mappings = mappings.substr(breakPos+1);
 
     std::cout << mappings << std::endl;
+    std::cout << currentSubstring << std::endl;
 
     // Loop through each ending mapping
     for (int i = 0; i < ((stateCount - 1)*getNumStates(dStates)); i++) {
