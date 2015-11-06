@@ -521,6 +521,7 @@ int main(int argc, const char * argv[])
                 ss.str("");
                 ss << location;
                 mappings += markedState + "," + statesArray[i] + "," + ss.str() + "|";
+std::cout << mappings << std::endl;
                 std::cout << " = " << location << std::endl;
             }
         }
