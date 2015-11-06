@@ -33,14 +33,11 @@ std::string getFinalStates(Node* root, std::string originalFinalStates) {
     std::string finalStates = "";
 
     int numNewStates = getNumStates(root);
-    std::cout << numNewStates << std::endl;
 
     bool visitedArr[numNewStates];
     for (int i = 0; i < numNewStates; i++) {
         visitedArr[i] = false;
     }
-
-    std::cout << originalFinalStates << std::endl;
 
     // Loop through all of the original final states
     while (originalFinalStates.compare("") != 0) {
@@ -535,9 +532,34 @@ int main(int argc, const char * argv[])
     std::cout << "Initial State: {1}" << std::endl;
 
     std::cout << std::endl;
+    std::string endFinalStates = "";
+    bool checkArray[highestEClosure];
     for (int i = 0; i < highestEClosure; i++) {
-        std::cout << eClosures[i] << std::endl;
+        checkArray[i] = false;
     }
+    while (finalState.compare("") != 0) {
+        std::size_t pos = finalState.find(',');
+        std::string checkState = finalState.substr(0, pos);
+        finalState = finalState.substr(pos+1);
+        for (int i = 0; i < highestEClosure; i++) {
+            //Check here if they are end final states
+            if (eClosures[i].find(checkState) != std::string::npos) {
+                checkArray[i] = true;
+            }
+        }
+    }
+    for (int i = 0; i < highestEClosure; i++) {
+        if (checkArray[i]) {
+            std::stringstream ss;
+            ss << (i+1);
+            endFinalStates += ss.str();
+            endFinalStates += ",";
+        }
+    }
+    endFinalStates = endFinalStates.substr(0,-1);
+
+    std::cout << endFinalStates << std::endl;
+    
     std::cout << std::endl;
 
     std::cout << "Final States: {" << getFinalStates(dStates, finalState) << "}" << std::endl;
