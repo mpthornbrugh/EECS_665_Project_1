@@ -540,7 +540,12 @@ int main(int argc, const char * argv[])
     while (finalState.compare("") != 0) {
         std::size_t pos = finalState.find(',');
         std::string checkState = finalState.substr(0, pos);
-        finalState = finalState.substr(pos+1);
+        if (finalState.find(',') == std::string::npos) {
+            finalState = "";
+        }
+        else {
+            finalState = finalState.substr(pos+1);
+        }
         for (int i = 0; i < highestEClosure; i++) {
             //Check here if they are end final states
             if (eClosures[i].find(checkState) != std::string::npos) {
