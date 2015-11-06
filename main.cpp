@@ -497,6 +497,7 @@ std::cout << "Hey1" << std::endl;
                 std::string moveEClosure = findEClosure(nfaArray, moveState, numStates);
 std::cout << "Hey2" << std::endl;                
                 std::cout << "E-closure{" << moveState << "} = {" << moveEClosure << "}";
+std::cout << "Hey3" << std::endl;                
 
                 int location = -1;
                 //Loop through all EClosures to find the eclosure equal to the current one or create a new EClosure.
