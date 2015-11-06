@@ -521,13 +521,14 @@ int main(int argc, const char * argv[])
                 ss.str("");
                 ss << location;
                 mappings += markedState + "," + statesArray[i] + "," + ss.str() + "|";
-std::cout << mappings << std::endl;
                 std::cout << " = " << location << std::endl;
             }
         }
 
         std::cout << std::endl;
     }
+
+    std::cout << std::endl << mappings << std::endl;
 
     // Output formatted
     std::cout << "Initial State: {1}" << std::endl;
@@ -544,6 +545,8 @@ std::cout << mappings << std::endl;
     std::size_t breakPos = mappings.find('|');
     std::string currentSubstring = mappings.substr(0, breakPos);
     mappings = mappings.substr(breakPos+1);
+
+    std::cout << mappings << std::endl;
 
     // Loop through each ending mapping
     for (int i = 0; i < ((stateCount - 1)*getNumStates(dStates)); i++) {
